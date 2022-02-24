@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import styled from "styled-components";
+import { useGlobalContext } from "./context";
 
 const buttonVariants = {
   hidden: {
@@ -15,22 +16,27 @@ const buttonVariants = {
   hover: {
     scale: 1.1,
     transition: {
-      duration: 0.3,
+      duration: 1.2,
     },
     boxShadow: "0px 0px 8px rgb(255,255,255)",
   },
   hoverTwo: {
     scale: 1.1,
   },
+  exit: {
+    y: "-100vh",
+    transition: {
+      delay: 0.8,
+      type: "spring",
+      stiffness: 50,
+    },
+  },
 };
 
-const Categories = ({
-  popular,
-  activeGenre,
-  setActiveGenre,
-  setPage,
-  setFiltered,
-}) => {
+const Categories = () => {
+  const { popular, activeGenre, setActiveGenre, setPage, setFiltered } =
+    useGlobalContext();
+
   useEffect(() => {
     if (activeGenre === 0) {
       setFiltered(popular);
@@ -45,7 +51,12 @@ const Categories = ({
 
   return (
     <Wrapper>
-      <motion.div variants={buttonVariants} initial="hidden" animate="visible">
+      <motion.div
+        variants={buttonVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
         <motion.button
           variants={buttonVariants}
           whileHover="hover"

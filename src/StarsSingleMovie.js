@@ -1,9 +1,8 @@
 import React from "react";
-import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import styled from "styled-components";
-import { useGlobalContext } from "./context";
+import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
-const Stars = ({ stars }) => {
+const StarsSingleMovie = ({ stars, vote_count }) => {
   const tempStars = Array.from({ length: 10 }, (_, index) => {
     const number = index + 0.5;
     return (
@@ -21,12 +20,15 @@ const Stars = ({ stars }) => {
   return (
     <Wrapper>
       <div className="stars">{tempStars}</div>
+      <p>{vote_count} (ratings)</p>
     </Wrapper>
   );
 };
+
 const Wrapper = styled.div`
+  height: 3rem;
+  margin-top: 1rem;
   display: flex;
-  align-items: center;
   span {
     color: #ffb900;
     font-size: 1rem;
@@ -34,8 +36,11 @@ const Wrapper = styled.div`
   }
   p {
     margin-left: 0.5rem;
+    color: white;
     margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 17px;
   }
-  margin-bottom: 0.5rem;
 `;
-export default Stars;
+
+export default StarsSingleMovie;

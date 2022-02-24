@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { gridVariants } from "./Home";
+import { gridVariants } from "./Tree";
 import { motion } from "framer-motion";
 import Stars from "./Stars";
+import { useGlobalContext } from "./context";
 
 const url =
   "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
 
-const Movie = ({ movie }) => {
+const Movie = ({ movie = [] }) => {
   const {
     title,
     poster_path: poster,
@@ -17,7 +18,7 @@ const Movie = ({ movie }) => {
 
   return (
     <Wrapper>
-      <motion.div variants={gridVariants} className="movie">
+      <motion.div variants={gridVariants} layout className="movie">
         <img
           src={poster ? `https://image.tmdb.org/t/p/w300/${poster}` : url}
           alt={title}
@@ -26,13 +27,14 @@ const Movie = ({ movie }) => {
           <Stars stars={stars} />
         </div>
         <div className="movie-info">
-          <h4>{title}</h4>
+          <h4>{title || "N/a"}</h4>
           <p>{release_date}</p>
         </div>
       </motion.div>
     </Wrapper>
   );
 };
+
 const Wrapper = styled.div`
   .movie {
     position: relative;

@@ -1,10 +1,9 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-
-export const API_KEY = process.env.REACT_APP_API_KEY;
+import { useGlobalContext } from "./context";
 
 const searchVariants = {
   hidden: {
@@ -18,10 +17,17 @@ const searchVariants = {
       stiffness: 90,
     },
   },
+  exit: {
+    x: "-100vw",
+    transition: {
+      delay: 0.5,
+      type: "spring",
+      stiffness: 60,
+    },
+  },
 };
-
-const SearchMovies = ({ fetchMovies, filtered, setFiltered }) => {
-  const [query, setQuery] = useState("");
+const SearchMovies = () => {
+  const { query, setQuery } = useGlobalContext();
   const focusInput = useRef(null);
 
   useEffect(() => {
@@ -30,17 +36,7 @@ const SearchMovies = ({ fetchMovies, filtered, setFiltered }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (query === "") {
-      setFiltered(filtered);
-    }
   };
-
-  useEffect(() => {
-    fetchMovies(
-      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`
-    );
-    // eslint-disable-next-line
-  }, [query]);
 
   return (
     <Wrapper>
@@ -50,6 +46,7 @@ const SearchMovies = ({ fetchMovies, filtered, setFiltered }) => {
           variants={searchVariants}
           initial="hidden"
           animate="visible"
+          exit="exit"
           type="text"
           placeholder="Search"
           value={query}
@@ -64,6 +61,8 @@ const Wrapper = styled.div`
   justify-content: center;
   margin-bottom: 1rem;
   input {
+    text-transform: capitalize;
+    opacity: 0.7;
     width: 40rem;
     height: 0.1rem;
     font-size: 1.5rem;
