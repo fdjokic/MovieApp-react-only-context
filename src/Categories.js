@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import styled from "styled-components";
@@ -41,6 +40,7 @@ const Categories = ({
       return movie.genre_ids.includes(activeGenre);
     });
     setFiltered(filtered);
+    // eslint-disable-next-line
   }, [activeGenre]);
 
   return (

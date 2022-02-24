@@ -39,6 +39,7 @@ const SearchMovies = ({ fetchMovies, filtered, setFiltered }) => {
     fetchMovies(
       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`
     );
+    // eslint-disable-next-line
   }, [query]);
 
   return (
