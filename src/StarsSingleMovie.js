@@ -34,6 +34,7 @@ const Wrapper = styled.div`
   height: 3rem;
   margin-top: 1rem;
   display: flex;
+
   span {
     color: #ffb900;
     font-size: 1rem;
@@ -41,14 +42,16 @@ const Wrapper = styled.div`
   }
   p {
     margin-left: 0.5rem;
-    color: white;
+    color: ${(props) => props.theme.fontColor};
+
     margin-bottom: 0;
     font-size: 1.1rem;
     line-height: 30px;
   }
   .number {
     font-size: 1.3rem;
-    color: white;
+    color: ${(props) => props.theme.fontColor};
+
     border: 1px solid #ffb900;
     padding: 0 0 0.3rem 0.3rem;
     margin-right: 1rem;

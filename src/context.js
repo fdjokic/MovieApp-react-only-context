@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import Loading from "./Loading";
 export const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}`;
@@ -13,7 +14,6 @@ const AppProvider = ({ children }) => {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [genres, setGenres] = useState([]);
-  const [empty, setEmpty] = useState(false);
   const [theme, setTheme] = useState("light");
   const [isChecked, setIsChecked] = useState(false);
 
@@ -24,7 +24,9 @@ const AppProvider = ({ children }) => {
     const urlPage = `&page=${page}`;
     const urlQuery = `&query=${query}`;
     let url;
-
+    if (loading) {
+      return <Loading />;
+    }
     if (query) {
       url = `${searchUrl}${urlPage}${urlQuery}`;
     } else {
@@ -35,14 +37,9 @@ const AppProvider = ({ children }) => {
       const data = await axios(url);
       const movies = data.data.results;
       setPopular(movies);
+      setFiltered(movies);
       setLoading(false);
-      if (filtered === []) {
-        setEmpty(true);
-      } else {
-        setFiltered(movies);
-      }
     } catch (error) {
-      setLoading(false);
       console.log(error);
     }
   };
@@ -52,8 +49,7 @@ const AppProvider = ({ children }) => {
     fetchMovies(
       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`
     );
-    // eslint-disable-next-line
-  }, [query, page, empty]);
+  }, [query, page]);
 
   return (
     <AppContext.Provider
@@ -67,11 +63,8 @@ const AppProvider = ({ children }) => {
         page,
         setPage,
         setActiveGenre,
-        loading,
         genres,
         setGenres,
-        empty,
-        setEmpty,
         theme,
         setTheme,
         isChecked,

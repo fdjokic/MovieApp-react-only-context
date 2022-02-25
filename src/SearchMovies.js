@@ -64,7 +64,6 @@ const Wrapper = styled.div`
   margin: 1rem auto;
   input {
     background-color: ${(props) => props.theme.input};
-
     text-transform: capitalize;
     opacity: 0.7;
     width: 40rem;
@@ -74,7 +73,7 @@ const Wrapper = styled.div`
     padding: 1.5rem;
     outline: none;
     border: 1px solid white;
-    color: white;
+    color: black;
   }
 `;
 export default SearchMovies;

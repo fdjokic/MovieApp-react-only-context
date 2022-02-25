@@ -23,10 +23,9 @@ const NavBar = () => {
 const Wrapper = styled.nav`
   width: 100vw;
   height: 4rem;
-  transition: ${(props) => props.theme.transition};
 
   h1 {
-    background: -webkit-linear-gradient(#d03838, #f033ff);
+    background: ${(props) => props.theme.navText};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 3.5rem;
@@ -40,7 +39,7 @@ const Wrapper = styled.nav`
     margin: 1rem auto;
   }
   .icon {
-    color: white;
+    color: ${(props) => props.theme.icon};
     font-size: 3rem;
   }
   .link {

@@ -135,10 +135,12 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   width: 60vw;
   margin: 2rem auto;
+
   button {
     margin: 1rem 1rem;
     padding: 0.6rem;
-    border: 2px solid #ff69b4;
+    border: ${(props) => props.theme.border};
+
     cursor: pointer;
     min-width: 5rem;
     width: fit-content;

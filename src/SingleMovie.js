@@ -9,6 +9,7 @@ import Loading from "./Loading";
 import { motion } from "framer-motion";
 import StarsSingleMovie from "./StarsSingleMovie";
 import { formatPrice } from "./formatPrice";
+import { GlobalStyles } from "./themes";
 
 const imageVariants = {
   initial: {
@@ -19,7 +20,7 @@ const imageVariants = {
     x: 0,
     scale: 1,
     transition: {
-      duration: 0.2,
+      duration: 0.4,
     },
   },
 };
@@ -70,6 +71,7 @@ const SingleMovie = () => {
 
   return (
     <Wrapper>
+      <GlobalStyles />
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
@@ -168,9 +170,9 @@ const Wrapper = styled.div`
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
   .date {
+    color: ${(props) => props.theme.fontColor};
     font-size: 1.5rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: grey;
     margin-left: 1rem;
     letter-spacing: 5px;
   }
@@ -179,7 +181,7 @@ const Wrapper = styled.div`
     width: fit-content;
     margin-bottom: 1rem;
     font-size: 2rem;
-    color: #171717;
+    color: ${(props) => props.theme.fontColor};
     padding-bottom: 0.5rem;
     border-bottom: 3px solid #ff69b4;
   }
@@ -200,7 +202,7 @@ const Wrapper = styled.div`
     color: #ff69b4;
     margin-bottom: 1rem;
     span {
-      color: white;
+      color: ${(props) => props.theme.fontColor};
     }
   }
   .companies {
@@ -208,7 +210,7 @@ const Wrapper = styled.div`
     color: #ff69b4;
     margin-bottom: 1rem;
     span {
-      color: white;
+      color: ${(props) => props.theme.fontColor};
     }
   }
   .production {
@@ -219,7 +221,7 @@ const Wrapper = styled.div`
     color: #ff69b4;
     margin-bottom: 1rem;
     span {
-      color: white;
+      color: ${(props) => props.theme.fontColor};
     }
   }
 `;
