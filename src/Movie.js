@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { gridVariants } from "./Tree";
 import { motion } from "framer-motion";
 import Stars from "./Stars";
-import { useGlobalContext } from "./context";
 
 const url =
   "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";

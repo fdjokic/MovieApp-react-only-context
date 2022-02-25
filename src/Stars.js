@@ -1,7 +1,6 @@
 import React from "react";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import styled from "styled-components";
-import { useGlobalContext } from "./context";
 
 const Stars = ({ stars }) => {
   const tempStars = Array.from({ length: 10 }, (_, index) => {

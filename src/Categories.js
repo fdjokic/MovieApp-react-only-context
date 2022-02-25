@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "./context";
+import { API_KEY } from "./context";
+import axios from "axios";
 
 const buttonVariants = {
   hidden: {
@@ -34,18 +36,38 @@ const buttonVariants = {
 };
 
 const Categories = () => {
-  const { popular, activeGenre, setActiveGenre, setPage, setFiltered } =
-    useGlobalContext();
+  const {
+    activeGenre,
+    setActiveGenre,
+    genres,
+    setFiltered,
+    setGenres,
+    popular,
+  } = useGlobalContext();
 
-  useEffect(() => {
-    if (activeGenre === 0) {
-      setFiltered(popular);
-      return;
+  // FETCH
+  const fetchGenre = async (url) => {
+    try {
+      const data = await axios(url);
+      setGenres(data.data.genres);
+    } catch (error) {
+      console.log(error);
     }
-    const filtered = popular.filter((movie) => {
+  };
+  // USE EFFECT GENRES
+  useEffect(() => {
+    const genresFiltered = popular.filter((movie) => {
       return movie.genre_ids.includes(activeGenre);
     });
-    setFiltered(filtered);
+    if (activeGenre === 0) {
+      setFiltered(popular);
+    } else {
+      setFiltered(genresFiltered);
+    }
+
+    fetchGenre(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
+    );
     // eslint-disable-next-line
   }, [activeGenre]);
 
@@ -57,7 +79,7 @@ const Categories = () => {
         animate="visible"
         exit="exit"
       >
-        <motion.button
+        {/* <motion.button
           variants={buttonVariants}
           whileHover="hover"
           className="page"
@@ -71,37 +93,36 @@ const Categories = () => {
           }
         >
           previous
-        </motion.button>
-        <motion.button
-          variants={buttonVariants}
-          whileHover="hoverTwo"
+        </motion.button> */}
+        <button
           onClick={() => setActiveGenre(0)}
+          className={activeGenre === 0 ? "page" : null}
         >
           All
-        </motion.button>
-        <motion.button
-          variants={buttonVariants}
-          whileHover="hoverTwo"
-          onClick={() => setActiveGenre(35)}
-        >
-          comedy
-        </motion.button>
-        <motion.button
-          variants={buttonVariants}
-          whileHover="hoverTwo"
-          onClick={() => setActiveGenre(28)}
-        >
-          action
-        </motion.button>
+        </button>
 
-        <motion.button
+        {genres.map((genre) => {
+          const { id, name } = genre;
+
+          return (
+            <button
+              key={id}
+              onClick={() => setActiveGenre(id)}
+              className={genre.id === activeGenre ? "page" : null}
+            >
+              {name}
+            </button>
+          );
+        })}
+
+        {/* <motion.button
           variants={buttonVariants}
           whileHover="hover"
           className="page"
           onClick={() => setPage((oldPage) => oldPage + 1)}
         >
           next
-        </motion.button>
+        </motion.button> */}
       </motion.div>
     </Wrapper>
   );
@@ -109,16 +130,23 @@ const Categories = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 60vw;
+  margin: 2rem auto;
   button {
-    margin: 2.5rem 1rem;
+    margin: 1rem 1rem;
     padding: 0.6rem;
     border: 2px solid #ff69b4;
     cursor: pointer;
-    width: 6rem;
-    color: white;
+    min-width: 5rem;
+    width: fit-content;
+    color: ${(props) => props.theme.fontColor};
+
     border-radius: 30px;
-    background: #2d3a44;
+    background: ${(props) => props.theme.body};
+
     text-transform: uppercase;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;

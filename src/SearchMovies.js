@@ -60,7 +60,11 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+  width: fit-content;
+  margin: 1rem auto;
   input {
+    background-color: ${(props) => props.theme.input};
+
     text-transform: capitalize;
     opacity: 0.7;
     width: 40rem;

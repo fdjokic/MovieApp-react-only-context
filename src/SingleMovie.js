@@ -19,7 +19,7 @@ const imageVariants = {
     x: 0,
     scale: 1,
     transition: {
-      duration: 0.3,
+      duration: 0.2,
     },
   },
 };
@@ -54,7 +54,6 @@ const SingleMovie = () => {
   if (loading) {
     return <Loading />;
   }
-  console.log(movie);
 
   const {
     title,
@@ -73,11 +72,11 @@ const SingleMovie = () => {
     <Wrapper>
       <motion.section
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 0.4 } }}
+        animate={{ opacity: 1, transition: { duration: 0.5 } }}
       >
         <div className="flex-box">
           <motion.img
-            className={poster ? "img" : "wait-img"}
+            className={poster === null ? "wait-img" : "img"}
             variants={imageVariants}
             initial="initial"
             animate="animate"
@@ -88,44 +87,53 @@ const SingleMovie = () => {
           />
           <div className="title-reviews">
             <h1>
-              {title}
-              <span className="date">{`(${release_date})`}</span>
+              {title ? title : "N/A"}
+              <span className="date">{`(${
+                release_date ? release_date : "N/A"
+              })`}</span>
             </h1>
-            <header></header>
+
             <StarsSingleMovie stars={stars} vote_count={vote_count} />
             <p className="overview">
               <span>Overview:</span>
               <br />
-              {overview}
+              {overview ? overview : "N/A"}
             </p>
 
             <p className="other">
-              Length: <span>{runtime} minutes</span>
+              Length:{" "}
+              <span>
+                {runtime ? runtime : "N/A"} {runtime ? "minutes" : null}
+              </span>
             </p>
             <p className="other">
-              Revenue : <span>{formatPrice(revenue)}</span>
+              Revenue : <span>{revenue ? formatPrice(revenue) : "N/A"}</span>
             </p>
             <div className="genres">
               <p className="production">Genres:</p>
-              {genres.map((genre, index) => {
-                const { name } = genre;
-                return (
-                  <span key={index}>
-                    {name} <br />
-                  </span>
-                );
-              })}
+              {genres
+                ? genres.map((genre, index) => {
+                    const { name } = genre;
+                    return (
+                      <span key={index}>
+                        {name ? name : "N/A"} <br />
+                      </span>
+                    );
+                  })
+                : "N/A"}
             </div>
             <div className="companies">
               <p className="production">Production companies:</p>
-              {production_companies.map((company, index) => {
-                const { name } = company;
-                return (
-                  <span key={index}>
-                    {name} <br />
-                  </span>
-                );
-              })}
+              {production_companies
+                ? production_companies.map((company, index) => {
+                    const { name } = company;
+                    return (
+                      <span key={index}>
+                        {name ? name : "N/A"} <br />
+                      </span>
+                    );
+                  })
+                : "N/A"}
             </div>
           </div>
         </div>
@@ -135,19 +143,22 @@ const SingleMovie = () => {
 };
 
 const Wrapper = styled.div`
+  width: 75vw;
   padding: 5rem;
-  margin-left: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10rem;
+
   .img {
     margin-right: 4rem;
     margin-left: 5rem;
-    border: 4px solid #ff69b4;
     height: 55rem;
     border-radius: 10px;
     object-fit: cover;
   }
   .wait-img {
     height: 55rem;
-    border-radius: 10px;
     object-fit: cover;
     margin-right: 4rem;
     margin-left: 5rem;
@@ -163,20 +174,19 @@ const Wrapper = styled.div`
     margin-left: 1rem;
     letter-spacing: 5px;
   }
-  header {
-    height: 0.7px;
-    background-color: #ff69b4;
-    width: 100%;
-  }
+
   h1 {
+    width: fit-content;
     margin-bottom: 1rem;
     font-size: 2rem;
     color: #171717;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #ff69b4;
   }
   .overview {
     font-size: 1.5rem;
-    width: 60%;
-    color: white;
+    width: 80%;
+    color: ${(props) => props.theme.fontColor};
     margin-bottom: 1rem;
     border: 1px solid #ff69b4;
     padding: 1rem;

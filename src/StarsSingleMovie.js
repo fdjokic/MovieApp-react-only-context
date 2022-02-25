@@ -19,8 +19,13 @@ const StarsSingleMovie = ({ stars, vote_count }) => {
   });
   return (
     <Wrapper>
-      <div className="stars">{tempStars}</div>
-      <p>{vote_count} (ratings)</p>
+      <div className="stars">
+        <span className="number">{stars ? stars : "N/A"} </span>
+        {tempStars}
+      </div>
+      <p>
+        {vote_count ? vote_count : "N/A"} {vote_count ? "ratings" : null}
+      </p>
     </Wrapper>
   );
 };
@@ -39,7 +44,14 @@ const Wrapper = styled.div`
     color: white;
     margin-bottom: 0;
     font-size: 1.1rem;
-    line-height: 17px;
+    line-height: 30px;
+  }
+  .number {
+    font-size: 1.3rem;
+    color: white;
+    border: 1px solid #ffb900;
+    padding: 0 0 0.3rem 0.3rem;
+    margin-right: 1rem;
   }
 `;
 

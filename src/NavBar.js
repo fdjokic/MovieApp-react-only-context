@@ -2,22 +2,28 @@ import React from "react";
 import styled from "styled-components";
 import { RiAncientGateLine } from "react-icons/ri";
 import { RiMovie2Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <Wrapper>
-      <div>
-        <RiMovie2Line className="icon" />
-        <h1>Movie Temple</h1>
-        <RiAncientGateLine className="icon" />
-      </div>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Link to="/" className="link">
+          <div>
+            <RiMovie2Line className="icon" />
+            <h1>Movie Temple</h1>
+            <RiAncientGateLine className="icon" />
+          </div>
+        </Link>
+      </Wrapper>
+    </>
   );
 };
 
 const Wrapper = styled.nav`
   width: 100vw;
   height: 4rem;
+  transition: ${(props) => props.theme.transition};
 
   h1 {
     background: -webkit-linear-gradient(#d03838, #f033ff);
@@ -31,11 +37,14 @@ const Wrapper = styled.nav`
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    margin-top: 1rem;
+    margin: 1rem auto;
   }
   .icon {
     color: white;
     font-size: 3rem;
+  }
+  .link {
+    text-decoration: none;
   }
 `;
 
