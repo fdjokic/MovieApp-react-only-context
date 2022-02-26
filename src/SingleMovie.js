@@ -20,7 +20,7 @@ const imageVariants = {
     x: 0,
     scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.8,
     },
   },
 };
@@ -74,7 +74,7 @@ const SingleMovie = () => {
       <GlobalStyles />
       <motion.section
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 0.5 } }}
+        animate={{ opacity: 1, transition: { duration: 0.8 } }}
       >
         <div className="flex-box">
           <motion.img
@@ -186,6 +186,7 @@ const Wrapper = styled.div`
     border-bottom: 3px solid #ff69b4;
   }
   .overview {
+    font-weight: 400;
     font-size: 1.5rem;
     width: 80%;
     color: ${(props) => props.theme.fontColor};
@@ -194,33 +195,49 @@ const Wrapper = styled.div`
     padding: 1rem;
     border-radius: 10px;
     span {
-      color: #ff69b4;
+      font-weight: ${(props) => props.theme.font};
+      color: ${(props) => props.theme.fontColor};
     }
   }
   .other {
     font-size: 1.5rem;
-    color: #ff69b4;
+    color: ${(props) => props.theme.fontColor};
+    font-weight: ${(props) => props.theme.font};
     margin-bottom: 1rem;
     span {
+      font-weight: 400;
       color: ${(props) => props.theme.fontColor};
     }
   }
   .companies {
     font-size: 1.5rem;
-    color: #ff69b4;
+    ${(props) => props.theme.fontColor};
+    font-weight: ${(props) => props.theme.font};
     margin-bottom: 1rem;
     span {
+      font-weight: 400;
       color: ${(props) => props.theme.fontColor};
     }
   }
   .production {
+    font-weight: ${(props) => props.theme.font};
+
     margin-bottom: 0.2rem;
+
+    span {
+      font-weight: 400;
+      color: ${(props) => props.theme.fontColor};
+    }
   }
   .genres {
+    p {
+    }
     font-size: 1.5rem;
-    color: #ff69b4;
+    font-weight: ${(props) => props.theme.font};
+
     margin-bottom: 1rem;
     span {
+      font-weight: 400;
       color: ${(props) => props.theme.fontColor};
     }
   }

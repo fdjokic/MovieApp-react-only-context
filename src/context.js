@@ -16,7 +16,7 @@ const AppProvider = ({ children }) => {
   const [genres, setGenres] = useState([]);
   const [theme, setTheme] = useState("dark");
   const [isChecked, setIsChecked] = useState(false);
-
+  const [empty, setEmpty] = useState(false);
   const mainUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US`;
 
@@ -32,13 +32,22 @@ const AppProvider = ({ children }) => {
     } else {
       url = `${mainUrl}${urlPage}`;
     }
+    setEmpty(true);
     setLoading(true);
     try {
       const data = await axios(url);
       const movies = data.data.results;
+      setEmpty(false);
       setPopular(movies);
       setFiltered(movies);
+
       setLoading(false);
+
+      if (movies.length < 1) {
+        setEmpty(true);
+      } else {
+        setEmpty(false);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -46,9 +55,13 @@ const AppProvider = ({ children }) => {
 
   // USE EFFECT MOVIES
   useEffect(() => {
-    fetchMovies(
-      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`
-    );
+    setTimeout(() => {
+      fetchMovies(
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`
+      );
+    }, 50);
+
+    // eslint-disable-next-line
   }, [query, page]);
 
   return (
@@ -69,6 +82,7 @@ const AppProvider = ({ children }) => {
         setTheme,
         isChecked,
         setIsChecked,
+        empty,
       }}
     >
       {children}

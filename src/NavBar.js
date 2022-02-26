@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { RiAncientGateLine } from "react-icons/ri";
-import { RiMovie2Line } from "react-icons/ri";
+
 import { Link } from "react-router-dom";
+import { BiCameraMovie } from "react-icons/bi";
 
 const NavBar = () => {
   return (
@@ -10,9 +10,8 @@ const NavBar = () => {
       <Wrapper>
         <Link to="/" className="link">
           <div>
-            <RiMovie2Line className="icon" />
+            <BiCameraMovie className="icon" />
             <h1>Movie Temple</h1>
-            <RiAncientGateLine className="icon" />
           </div>
         </Link>
       </Wrapper>
@@ -21,8 +20,9 @@ const NavBar = () => {
 };
 
 const Wrapper = styled.nav`
-  width: 100vw;
+  width: 90vw;
   height: 4rem;
+  margin: 0 auto;
 
   h1 {
     background: ${(props) => props.theme.navText};
@@ -40,7 +40,7 @@ const Wrapper = styled.nav`
   }
   .icon {
     color: ${(props) => props.theme.icon};
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
   .link {
     text-decoration: none;

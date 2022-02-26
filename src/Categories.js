@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "./context";
 import { API_KEY } from "./context";
@@ -12,7 +12,7 @@ const buttonVariants = {
   visible: {
     opacity: 1,
     transition: {
-      delay: 1,
+      delay: 0.7,
     },
   },
   hover: {
@@ -26,11 +26,9 @@ const buttonVariants = {
     scale: 1.1,
   },
   exit: {
-    y: "-100vh",
+    opacity: 0,
     transition: {
-      delay: 0.8,
-      type: "spring",
-      stiffness: 50,
+      delay: 0.5,
     },
   },
 };
@@ -45,6 +43,7 @@ const Categories = () => {
     popular,
   } = useGlobalContext();
 
+  const [empty, setEmpty] = useState(false);
   // FETCH
   const fetchGenre = async (url) => {
     try {
@@ -59,15 +58,24 @@ const Categories = () => {
     const genresFiltered = popular.filter((movie) => {
       return movie.genre_ids.includes(activeGenre);
     });
+    if (genresFiltered.length < 1 && activeGenre !== 0) {
+      console.log("hey");
+      setEmpty(true);
+    } else {
+      setEmpty(false);
+    }
     if (activeGenre === 0) {
       setFiltered(popular);
     } else {
       setFiltered(genresFiltered);
     }
 
+    console.log(genresFiltered);
+
     fetchGenre(
       `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
     );
+
     // eslint-disable-next-line
   }, [activeGenre]);
 
@@ -124,6 +132,13 @@ const Categories = () => {
           next
         </motion.button> */}
       </motion.div>
+      {empty && (
+        <h2
+          style={{ color: "red", fontFamily: "monospace", marginTop: "4rem" }}
+        >
+          No movies matched your category search.
+        </h2>
+      )}
     </Wrapper>
   );
 };

@@ -17,48 +17,46 @@ export const gridVariants = {
   animate: {
     opacity: 1,
     transition: {
-      duration: 4,
+      duration: 3,
     },
   },
   exit: {
-    y: "100vh",
+    opacity: 0,
     transition: {
-      delay: 0.1,
-      type: "spring",
+      duration: 0.5,
     },
   },
 };
 const h1Variants = {
   hidden: {
-    x: "100vw",
+    opacity: 0,
   },
   visible: {
-    x: 0,
+    opacity: 1,
     transition: {
-      delay: 0.3,
-      type: "spring",
+      delay: 0.9,
     },
   },
   exit: {
-    x: "100vw",
+    opacity: 0,
     transition: {
-      delay: 0.3,
-      type: "spring",
+      delay: 0.5,
     },
   },
 };
 
 const Tree = () => {
   const {
+    empty,
     query,
     filtered,
     loading,
-    empty,
     theme,
     setTheme,
     isChecked,
     setIsChecked,
   } = useGlobalContext();
+
   if (loading) {
     return <Loading />;
   }
@@ -69,15 +67,10 @@ const Tree = () => {
   const handleChange = () => {
     setIsChecked(!isChecked);
   };
-  if (loading) {
-    return <Loading />;
-  }
-  if (empty) {
-    return <h1>No movies matched.</h1>;
-  }
+
   return (
     <>
-      <GlobalStyles />
+      <GlobalStyles transition={`${(props) => props.theme.transition}`} />
       <Wrapper>
         <input
           className="input"
@@ -88,25 +81,30 @@ const Tree = () => {
         />
         <Categories />
         <SearchMovies />
+
         {!query ? (
-          <motion.h1
-            variants={h1Variants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
+          <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
             Now in theaters:
           </motion.h1>
         ) : null}
         <motion.div
-          layout
           className="grid"
+          layout
           variants={gridVariants}
           initial="initial"
           animate="animate"
           exit="exit"
         >
-          {!empty &&
+          {empty ? (
+            <motion.h1
+              style={{ color: "red" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              No movies match your search criteria.
+            </motion.h1>
+          ) : (
             filtered.map((movie) => {
               const { id } = movie;
               return (
@@ -114,7 +112,8 @@ const Tree = () => {
                   <Movie key={id} movie={movie} />
                 </Link>
               );
-            })}
+            })
+          )}
         </motion.div>
       </Wrapper>
     </>
@@ -131,7 +130,7 @@ const Wrapper = styled.div`
     position: relative;
     width: 60px;
     height: 30px;
-    background-image: url(https://i.postimg.cc/857jHw2q/Screenshot-2020-04-16-at-1-07-06-PM.png);
+    background: #ff69b4;
     background-size: cover;
     border-radius: 50px;
     outline: none;
@@ -144,13 +143,13 @@ const Wrapper = styled.div`
     left: 0;
     height: 30px;
     width: 30px;
-    background-color: #ff69b4;
+    background: white;
     border-radius: 50px;
     transition: 0.5s;
   }
 
   .input:checked {
-    background-image: url(https://i.postimg.cc/Hn0nstVK/Screenshot-2020-04-16-at-1-07-19-PM.png);
+    background: black;
   }
 
   .input:checked:before {
@@ -158,12 +157,13 @@ const Wrapper = styled.div`
     transform: translate(100%);
   }
   h1 {
-    margin: 3rem 0 0 0;
+    margin: 3rem auto;
     text-align: center;
     font-family: monospace;
+    width: fit-content;
   }
   .grid {
-    width: 90vw;
+    width: 80vw;
     display: grid;
     gap: 2rem;
     margin: 0 auto;

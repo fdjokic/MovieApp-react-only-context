@@ -7,22 +7,18 @@ import { useGlobalContext } from "./context";
 
 const searchVariants = {
   hidden: {
-    x: "-100vw",
+    opacity: 0,
   },
   visible: {
-    x: 0,
+    opacity: 1,
     transition: {
-      type: "spring",
       delay: 2,
-      stiffness: 90,
     },
   },
   exit: {
-    x: "-100vw",
+    opacity: 0,
     transition: {
       delay: 0.5,
-      type: "spring",
-      stiffness: 60,
     },
   },
 };

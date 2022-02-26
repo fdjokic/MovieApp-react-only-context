@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { GlobalStyles } from "./themes";
 
 const Loading = () => {
   return (
     <Wrapper>
+      <GlobalStyles />
       <div className="lds-dual-ring"></div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  transition: 0;
   display: flex;
   justify-content: center;
   margin-top: 25rem;

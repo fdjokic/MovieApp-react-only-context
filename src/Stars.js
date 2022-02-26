@@ -26,15 +26,16 @@ const Stars = ({ stars }) => {
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  .stars {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
   span {
     color: #ffb900;
     font-size: 1rem;
-    margin-right: 0.25rem;
+    padding: 0.1rem 0.2rem;
   }
-  p {
-    margin-left: 0.5rem;
-    margin-bottom: 0;
-  }
+
   margin-bottom: 0.5rem;
 `;
 export default Stars;

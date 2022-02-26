@@ -26,8 +26,8 @@ const Movie = ({ movie = [] }) => {
           <Stars stars={stars} />
         </div>
         <div className="movie-info">
-          <h4>{title || "N/a"}</h4>
-          <p>{release_date}</p>
+          <h4>{title || "N/A"}</h4>
+          <p>{release_date ? release_date : "N/A"}</p>
         </div>
       </motion.div>
     </Wrapper>
@@ -38,13 +38,12 @@ const Wrapper = styled.div`
   .movie {
     position: relative;
     overflow: hidden;
-    width: 300px;
     border-radius: 15px;
   }
-
   .movie img {
-    width: 300px;
-    height: 350px;
+    border-radius: 12px;
+    max-width: 400px;
+    height: 450px;
     display: block;
     object-fit: cover;
   }
@@ -53,7 +52,7 @@ const Wrapper = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 85%;
     padding: 0.5rem 1rem;
     background: rgba(0, 0, 0, 0.6);
     transform: translateY(100%);
