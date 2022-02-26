@@ -96,7 +96,7 @@ const Categories = () => {
         </motion.button> */}
         <button
           onClick={() => setActiveGenre(0)}
-          className={activeGenre === 0 ? "page" : null}
+          className={activeGenre === 0 ? "active" : null}
         >
           All
         </button>
@@ -108,7 +108,7 @@ const Categories = () => {
             <button
               key={id}
               onClick={() => setActiveGenre(id)}
-              className={genre.id === activeGenre ? "page" : null}
+              className={genre.id === activeGenre ? "active" : null}
             >
               {name}
             </button>
@@ -130,17 +130,16 @@ const Categories = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-  width: 60vw;
+  width: 70vw;
   margin: 2rem auto;
 
   button {
-    margin: 1rem 1rem;
+    margin: 0.5rem 0.8rem;
     padding: 0.6rem;
     border: ${(props) => props.theme.border};
-
     cursor: pointer;
     min-width: 5rem;
     width: fit-content;
@@ -154,8 +153,7 @@ const Wrapper = styled.div`
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: bold;
   }
-  .page {
-    margin: 0 3rem 0 3rem;
+  .active {
     color: white;
     border: 2px solid white;
     background-color: #ff69b4;

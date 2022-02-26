@@ -14,7 +14,7 @@ const AppProvider = ({ children }) => {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [genres, setGenres] = useState([]);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const [isChecked, setIsChecked] = useState(false);
 
   const mainUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US`;

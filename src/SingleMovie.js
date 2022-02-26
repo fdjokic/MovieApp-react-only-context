@@ -20,7 +20,7 @@ const imageVariants = {
     x: 0,
     scale: 1,
     transition: {
-      duration: 0.4,
+      duration: 0.5,
     },
   },
 };
