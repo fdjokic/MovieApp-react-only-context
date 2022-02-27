@@ -6,7 +6,7 @@ const Loading = () => {
   return (
     <Wrapper>
       <GlobalStyles />
-      <div class="lds-facebook">
+      <div className="lds-facebook">
         <div></div>
         <div></div>
         <div></div>
