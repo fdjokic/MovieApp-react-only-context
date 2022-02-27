@@ -57,9 +57,7 @@ const AppProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    fetchMovies(
-      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`
-    );
+    fetchMovies();
 
     // eslint-disable-next-line
   }, [nowInTheaters]);

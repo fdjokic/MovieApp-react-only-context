@@ -14,7 +14,7 @@ const searchVariants = {
   visible: {
     opacity: 1,
     transition: {
-      delay: 2,
+      delay: 0.8,
     },
   },
   exit: {
@@ -33,6 +33,7 @@ const SearchMovies = () => {
     try {
       const data = await axios(url);
       const movies = data.data.results;
+
       setFilterList(movies);
     } catch (error) {
       console.log(error);
@@ -45,7 +46,7 @@ const SearchMovies = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFilterList([]);
+    setQuery("");
     fetchMovies(
       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`
     );
@@ -54,7 +55,7 @@ const SearchMovies = () => {
   // USE EFFECT MOVIES
   useEffect(() => {
     const filterSearch = filterList.filter((movie) => {
-      return movie.title.startsWith(query);
+      return movie.title.toLowerCase().includes(query.toLowerCase());
     });
 
     fetchList(
@@ -80,19 +81,25 @@ const SearchMovies = () => {
         />
         {query && (
           <div className="search-list">
-            {filterList.map((movie) => {
-              return (
-                <article className="item">
-                  <Link
-                    to={`/movies/${movie.id}`}
-                    key={movie.id}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <MovieList title={movie.title} key={movie.id} />
-                  </Link>
-                </article>
-              );
-            })}
+            {filterList
+              .filter((movie) => {
+                return movie.title
+                  .toLowerCase()
+                  .startsWith(query.toLowerCase());
+              })
+              .map((movie) => {
+                return (
+                  <article className="item" key={movie.id}>
+                    <Link
+                      to={`/movies/${movie.id}`}
+                      key={movie.id}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <MovieList title={movie.title} key={movie.id} />
+                    </Link>
+                  </article>
+                );
+              })}
           </div>
         )}
       </form>
