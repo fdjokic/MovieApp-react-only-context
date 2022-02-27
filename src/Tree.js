@@ -49,7 +49,6 @@ const h1Variants = {
 const Tree = () => {
   const {
     empty,
-    query,
     filtered,
     loading,
     theme,
