@@ -5,6 +5,7 @@ import { useGlobalContext } from "./context";
 import { API_KEY } from "./context";
 import axios from "axios";
 import MovieList from "./MovieList";
+import { Link } from "react-router-dom";
 
 const searchVariants = {
   hidden: {
