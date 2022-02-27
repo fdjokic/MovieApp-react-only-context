@@ -17,6 +17,8 @@ const AppProvider = ({ children }) => {
   const [theme, setTheme] = useState("dark");
   const [isChecked, setIsChecked] = useState(false);
   const [empty, setEmpty] = useState(false);
+  const [nowInTheaters, setNowInTheaters] = useState(false);
+
   const mainUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US`;
 
@@ -29,8 +31,10 @@ const AppProvider = ({ children }) => {
     }
     if (query) {
       url = `${searchUrl}${urlPage}${urlQuery}`;
+      setNowInTheaters(false);
     } else {
       url = `${mainUrl}${urlPage}`;
+      setNowInTheaters(true);
     }
     setEmpty(true);
     setLoading(true);
@@ -52,18 +56,13 @@ const AppProvider = ({ children }) => {
       console.log(error);
     }
   };
-
-  // USE EFFECT MOVIES
   useEffect(() => {
-    setTimeout(() => {
-      fetchMovies(
-        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`
-      );
-    }, 50);
+    fetchMovies(
+      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`
+    );
 
     // eslint-disable-next-line
-  }, [query, page]);
-
+  }, [nowInTheaters]);
   return (
     <AppContext.Provider
       value={{
@@ -83,6 +82,8 @@ const AppProvider = ({ children }) => {
         isChecked,
         setIsChecked,
         empty,
+        fetchMovies,
+        nowInTheaters,
       }}
     >
       {children}

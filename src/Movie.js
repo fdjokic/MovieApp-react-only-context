@@ -17,7 +17,7 @@ const Movie = ({ movie = [] }) => {
 
   return (
     <Wrapper>
-      <motion.div variants={gridVariants} layout className="movie">
+      <motion.div layout variants={gridVariants} className="movie">
         <img
           src={poster ? `https://image.tmdb.org/t/p/w300/${poster}` : url}
           alt={title}
@@ -47,13 +47,12 @@ const Wrapper = styled.div`
     display: block;
     object-fit: cover;
   }
-
   .movie-info {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 85%;
-    padding: 0.5rem 1rem;
+    width: 100%;
+    padding: 0.5rem 0.5rem;
     background: rgba(0, 0, 0, 0.6);
     transform: translateY(100%);
     transition: 0.2s;
@@ -67,7 +66,6 @@ const Wrapper = styled.div`
   .movie-info p {
     margin-bottom: 0;
     color: white;
-
     font-size: 0.9rem;
     background: transparent;
   }

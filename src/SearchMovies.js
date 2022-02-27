@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useGlobalContext } from "./context";
+import { API_KEY } from "./context";
 
 const searchVariants = {
   hidden: {
@@ -23,7 +24,7 @@ const searchVariants = {
   },
 };
 const SearchMovies = () => {
-  const { query, setQuery } = useGlobalContext();
+  const { query, setQuery, fetchMovies, page } = useGlobalContext();
   const focusInput = useRef(null);
 
   useEffect(() => {
@@ -32,7 +33,11 @@ const SearchMovies = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
+    fetchMovies(
+      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`
+    );
+  }; // eslint-disable-next-line
+  // USE EFFECT MOVIES
 
   return (
     <Wrapper>

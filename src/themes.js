@@ -5,8 +5,8 @@ export const darkTheme = {
   body: "#171515",
   fontColor: "#FFFFFF",
   border: "3px solid #ff69b4",
+  cardBorder: "3px solid #ff69b4",
   icon: "white",
-  transition: "0.7s",
 };
 export const lightTheme = {
   navText: "-webkit-linear-gradient(black, hsla(0, 0%, 0%, 0.6))",
@@ -14,7 +14,6 @@ export const lightTheme = {
   border: "3px solid black",
   body: "#c4c6c9",
   fontColor: "#171515",
-  transition: "0.7s",
   font: "bold",
 };
 

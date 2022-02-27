@@ -17,13 +17,14 @@ export const gridVariants = {
   animate: {
     opacity: 1,
     transition: {
-      duration: 3,
+      delay: 0.5,
+      duration: 1,
     },
   },
   exit: {
     opacity: 0,
     transition: {
-      duration: 0.5,
+      duration: 1,
     },
   },
 };
@@ -55,6 +56,7 @@ const Tree = () => {
     setTheme,
     isChecked,
     setIsChecked,
+    nowInTheaters,
   } = useGlobalContext();
 
   if (loading) {
@@ -82,14 +84,14 @@ const Tree = () => {
         <Categories />
         <SearchMovies />
 
-        {!query ? (
+        {nowInTheaters ? (
           <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
             Now in theaters:
           </motion.h1>
         ) : null}
         <motion.div
-          className="grid"
           layout
+          className="grid"
           variants={gridVariants}
           initial="initial"
           animate="animate"
@@ -100,7 +102,7 @@ const Tree = () => {
               style={{ color: "red" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
+              transition={{ delay: 0.5 }}
             >
               No movies match your search criteria.
             </motion.h1>
@@ -159,7 +161,6 @@ const Wrapper = styled.div`
   h1 {
     margin: 3rem auto;
     text-align: center;
-    font-family: monospace;
     width: fit-content;
   }
   .grid {
