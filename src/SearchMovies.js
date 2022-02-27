@@ -85,6 +85,7 @@ const SearchMovies = () => {
               .filter((movie) => {
                 return movie.title
                   .toLowerCase()
+                  .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
                   .startsWith(query.toLowerCase());
               })
               .map((movie) => {
