@@ -80,13 +80,14 @@ const Categories = () => {
 
   return (
     <Wrapper>
-      <motion.div
-        variants={buttonVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-      >
-        {/* <motion.button
+      {!nowInTheaters && (
+        <motion.div
+          variants={buttonVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+          {/* <motion.button
           variants={buttonVariants}
           whileHover="hover"
           className="page"
@@ -101,28 +102,28 @@ const Categories = () => {
         >
           previous
         </motion.button> */}
-        <button
-          onClick={() => setActiveGenre(0)}
-          className={activeGenre === 0 ? "active" : null}
-        >
-          All
-        </button>
+          <button
+            onClick={() => setActiveGenre(0)}
+            className={activeGenre === 0 ? "active" : null}
+          >
+            All
+          </button>
 
-        {genres.map((genre) => {
-          const { id, name } = genre;
+          {genres.map((genre) => {
+            const { id, name } = genre;
 
-          return (
-            <button
-              key={id}
-              onClick={() => setActiveGenre(id)}
-              className={genre.id === activeGenre ? "active" : null}
-            >
-              {name}
-            </button>
-          );
-        })}
+            return (
+              <button
+                key={id}
+                onClick={() => setActiveGenre(id)}
+                className={genre.id === activeGenre ? "active" : null}
+              >
+                {name}
+              </button>
+            );
+          })}
 
-        {/* <motion.button
+          {/* <motion.button
           variants={buttonVariants}
           whileHover="hover"
           className="page"
@@ -130,7 +131,8 @@ const Categories = () => {
         >
           next
         </motion.button> */}
-      </motion.div>
+        </motion.div>
+      )}
       {empty && (
         <h2
           style={{ color: "red", fontFamily: "monospace", marginTop: "4rem" }}

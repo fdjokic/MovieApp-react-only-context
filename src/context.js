@@ -59,6 +59,10 @@ const AppProvider = ({ children }) => {
     }
   };
   useEffect(() => {
+    if (!carousel.current) {
+      carousel.current = true;
+      return;
+    }
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
 
     // eslint-disable-next-line
