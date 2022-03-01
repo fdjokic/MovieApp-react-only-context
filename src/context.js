@@ -62,8 +62,6 @@ const AppProvider = ({ children }) => {
     if (!carousel.current) {
       carousel.current = true;
       return;
-    } else {
-      return;
     }
 
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
