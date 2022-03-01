@@ -7,12 +7,12 @@ import { Link, useParams } from "react-router-dom";
 const url =
   "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
 
-const ReactSlider = () => {
+const Slider = () => {
   const { filtered } = useGlobalContext();
   const { id } = useParams();
   return (
     <Wrapper>
-      <AiOutlineLeftCircle size={60} className="slider-icon-left" />
+      <AiOutlineLeftCircle size={70} className="slider-icon-left" />
       <div className="slider">
         {filtered.map((movie, index) => {
           const { id } = movie;
@@ -27,7 +27,7 @@ const ReactSlider = () => {
           );
         })}
       </div>
-      <AiOutlineRightCircle size={60} className="slider-icon-right" />
+      <AiOutlineRightCircle size={70} className="slider-icon-right" />
     </Wrapper>
   );
 };
@@ -74,19 +74,5 @@ const Wrapper = styled.div`
     transition: 0.7s;
     cursor: pointer;
   }
-
-  .movie {
-    border-radius: 15px;
-    width: 400px;
-    height: 500px;
-    box-shadow: 0 3px 10px rgb(255 255 255 / 0.4);
-    display: inline-block;
-  }
-  .movie img {
-    border-radius: 12px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 `;
-export default ReactSlider;
+export default Slider;

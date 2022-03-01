@@ -24,14 +24,19 @@ const Wrapper = styled.div`
     border-radius: 15px;
     width: 400px;
     height: 500px;
-    box-shadow: 0 3px 10px rgb(255 255 255 / 0.4);
     margin: 0 0.7rem;
+    box-shadow: ${(props) => props.theme.cardShadow};
+    background-color: ${(props) => props.theme.movieBackground};
   }
   .movie img {
     border-radius: 12px;
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .movie:hover {
+    border-bottom: ${(props) => props.theme.movieBottomBorder};
+    transition: 0.2s;
   }
 `;
 

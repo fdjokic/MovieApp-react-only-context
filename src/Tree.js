@@ -9,7 +9,7 @@ import Loading from "./Loading";
 import { GlobalStyles } from "./themes";
 import MovieSlider from "./MovieSlider";
 import { useState } from "react";
-import ReactSlider from "./ReactSlider";
+import Slider from "./Slider";
 
 export const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -60,10 +60,7 @@ const Tree = () => {
     setIsChecked,
     nowInTheaters,
     carousel = false,
-    width,
-    setOffsetW,
   } = useGlobalContext();
-  const [slideIndex, setSlideIndex] = useState(1);
 
   if (loading) {
     return <Loading />;
@@ -76,11 +73,6 @@ const Tree = () => {
     setIsChecked(!isChecked);
   };
 
-  const previousSlide = () => {};
-  const nextSlide = () => {
-    console.log("hey");
-    setOffsetW(carousel.current.offsetWidth + carousel.current.offsetWidth);
-  };
   return (
     <>
       <GlobalStyles transition={`${(props) => props.theme.transition}`} />
@@ -100,7 +92,7 @@ const Tree = () => {
             <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
               Now in theaters:
             </motion.h1>
-            <ReactSlider />
+            <Slider />
             {/* <motion.section
               initial={{ x: "100vw" }}
               animate={{ x: 0 }}
