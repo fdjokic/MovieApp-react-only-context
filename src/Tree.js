@@ -8,6 +8,8 @@ import { useGlobalContext } from "./context";
 import Loading from "./Loading";
 import { GlobalStyles } from "./themes";
 import MovieSlider from "./MovieSlider";
+import { useState } from "react";
+import ReactSlider from "./ReactSlider";
 
 export const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -57,9 +59,12 @@ const Tree = () => {
     isChecked,
     setIsChecked,
     nowInTheaters,
-    carousel = "",
+    carousel = false,
     width,
+    setOffsetW,
   } = useGlobalContext();
+  const [slideIndex, setSlideIndex] = useState(1);
+
   if (loading) {
     return <Loading />;
   }
@@ -71,6 +76,11 @@ const Tree = () => {
     setIsChecked(!isChecked);
   };
 
+  const previousSlide = () => {};
+  const nextSlide = () => {
+    console.log("hey");
+    setOffsetW(carousel.current.offsetWidth + carousel.current.offsetWidth);
+  };
   return (
     <>
       <GlobalStyles transition={`${(props) => props.theme.transition}`} />
@@ -90,7 +100,8 @@ const Tree = () => {
             <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
               Now in theaters:
             </motion.h1>
-            <motion.section
+            <ReactSlider />
+            {/* <motion.section
               initial={{ x: "100vw" }}
               animate={{ x: 0 }}
               transition={{ duration: 1 }}
@@ -110,7 +121,8 @@ const Tree = () => {
                   );
                 })}
               </motion.div>
-            </motion.section>
+              <BtnSlider moveSlide={previousSlide} direction={"prev"} />
+            </motion.section> */}
           </div>
         )}
         <motion.div
@@ -207,6 +219,7 @@ const Wrapper = styled.div`
     cursor: grab;
   }
   section {
+    position: relative;
     height: 550px;
     background: rgba(0, 0, 0, 0.2);
     overflow: hidden;

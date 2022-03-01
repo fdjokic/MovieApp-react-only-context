@@ -20,23 +20,18 @@ const MovieSlider = ({ movie = [] }) => {
 };
 
 const Wrapper = styled.div`
-  display: flex;
   .movie {
-    position: relative;
-    overflow: hidden;
     border-radius: 15px;
     width: 400px;
-    height: 550px;
-    pointer-events: none;
-    display: block;
+    height: 500px;
+    box-shadow: 0 3px 10px rgb(255 255 255 / 0.4);
+    margin: 0 0.7rem;
   }
   .movie img {
-    display: block;
     border-radius: 12px;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    pointer-events: none;
   }
 `;
 
