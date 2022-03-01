@@ -62,13 +62,16 @@ const AppProvider = ({ children }) => {
     if (!carousel.current) {
       carousel.current = true;
       return;
+    } else {
+      return;
     }
-    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
 
-    //8912
-    //1034
+    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+    // eslint-disable-next-line
   });
 
+  //8912
+  //1034
   useEffect(() => {
     fetchMovies();
     // eslint-disable-next-line

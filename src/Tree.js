@@ -8,7 +8,6 @@ import { useGlobalContext } from "./context";
 import Loading from "./Loading";
 import { GlobalStyles } from "./themes";
 import MovieSlider from "./MovieSlider";
-import { useState, useRef, useEffect } from "react";
 
 export const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -58,7 +57,6 @@ const Tree = () => {
     isChecked,
     setIsChecked,
     nowInTheaters,
-    query,
     carousel = "",
     width,
   } = useGlobalContext();
