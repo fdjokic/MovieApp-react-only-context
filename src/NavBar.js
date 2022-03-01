@@ -3,12 +3,14 @@ import styled from "styled-components";
 
 import { Link } from "react-router-dom";
 import { BiCameraMovie } from "react-icons/bi";
+import { useGlobalContext } from "./context";
 
 const NavBar = () => {
+  const { setNowInTheaters } = useGlobalContext();
   return (
     <>
       <Wrapper>
-        <Link to="/" className="link">
+        <Link to="/" className="link" onClick={() => setNowInTheaters(true)}>
           <div>
             <BiCameraMovie className="icon" />
             <h1>Movie Temple</h1>

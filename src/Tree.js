@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { useGlobalContext } from "./context";
 import Loading from "./Loading";
 import { GlobalStyles } from "./themes";
+import MovieSlider from "./MovieSlider";
+import { useState, useRef, useEffect } from "react";
 
 export const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -56,8 +58,10 @@ const Tree = () => {
     isChecked,
     setIsChecked,
     nowInTheaters,
+    query,
+    carousel = "",
+    width,
   } = useGlobalContext();
-
   if (loading) {
     return <Loading />;
   }
@@ -83,11 +87,34 @@ const Tree = () => {
         <Categories />
         <SearchMovies />
 
-        {nowInTheaters ? (
-          <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
-            Now in theaters:
-          </motion.h1>
-        ) : null}
+        {nowInTheaters && (
+          <div>
+            <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
+              Now in theaters:
+            </motion.h1>
+            <motion.section
+              initial={{ x: "100vw" }}
+              animate={{ x: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <motion.div
+                className="carousel"
+                drag="x"
+                dragConstraints={{ right: 0, left: -width }}
+                ref={carousel}
+              >
+                {filtered.map((movie) => {
+                  const { id } = movie;
+                  return (
+                    <div to={`/movies/${id}`} key={id}>
+                      <MovieSlider key={id} movie={movie} />
+                    </div>
+                  );
+                })}
+              </motion.div>
+            </motion.section>
+          </div>
+        )}
         <motion.div
           layout
           className="grid"
@@ -96,7 +123,7 @@ const Tree = () => {
           animate="animate"
           exit="exit"
         >
-          {empty ? (
+          {empty && (
             <motion.h1
               style={{ color: "red" }}
               initial={{ opacity: 0 }}
@@ -105,7 +132,8 @@ const Tree = () => {
             >
               No movies match your search criteria.
             </motion.h1>
-          ) : (
+          )}
+          {!nowInTheaters &&
             filtered.map((movie) => {
               const { id } = movie;
               return (
@@ -113,8 +141,7 @@ const Tree = () => {
                   <Movie key={id} movie={movie} />
                 </Link>
               );
-            })
-          )}
+            })}
         </motion.div>
       </Wrapper>
     </>
@@ -174,6 +201,21 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     font-family: monospace;
+  }
+  .carousel {
+    z-index: 1;
+    display: flex;
+    gap: 3rem;
+    cursor: grab;
+  }
+  section {
+    height: 550px;
+    background: rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    cursor: grab;
+    margin-left: 1rem;
+    padding: 1rem;
+    box-shadow: 0 1px 9px rgb(255 255 255 / 0.2);
   }
 `;
 export default Tree;

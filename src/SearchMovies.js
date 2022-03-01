@@ -25,15 +25,13 @@ const searchVariants = {
   },
 };
 const SearchMovies = () => {
-  const { query, setQuery, fetchMovies, page } = useGlobalContext();
+  const { query = "s", setQuery, fetchMovies, page } = useGlobalContext();
   const focusInput = useRef(null);
   const [filterList, setFilterList] = useState([]);
-
   const fetchList = async (url) => {
     try {
       const data = await axios(url);
       const movies = data.data.results;
-
       setFilterList(movies);
     } catch (error) {
       console.log(error);
@@ -57,7 +55,7 @@ const SearchMovies = () => {
     const filterSearch = filterList.filter((movie) => {
       return movie.title.toLowerCase().includes(query.toLowerCase());
     });
-
+    if (!query) return;
     fetchList(
       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`
     );
@@ -85,7 +83,6 @@ const SearchMovies = () => {
               .filter((movie) => {
                 return movie.title
                   .toLowerCase()
-                  .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
                   .startsWith(query.toLowerCase());
               })
               .map((movie) => {
@@ -127,15 +124,18 @@ const Wrapper = styled.div`
     color: black;
   }
   .search-list {
+    position: absolute;
+    width: 100%;
     border-radius: 0 15px;
     border: 1px solid white;
     display: flex;
     flex-direction: column;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.7);
   }
   .item {
     margin: 0.5rem 1rem;
     text-decoration: none;
-    color: white;
     cursor: pointer;
   }
   .item:hover {

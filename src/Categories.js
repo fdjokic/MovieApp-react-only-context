@@ -41,6 +41,7 @@ const Categories = () => {
     setFiltered,
     setGenres,
     popular,
+    nowInTheaters,
   } = useGlobalContext();
 
   const [empty, setEmpty] = useState(false);
@@ -69,8 +70,6 @@ const Categories = () => {
     } else {
       setFiltered(genresFiltered);
     }
-
-    console.log(genresFiltered);
 
     fetchGenre(
       `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`

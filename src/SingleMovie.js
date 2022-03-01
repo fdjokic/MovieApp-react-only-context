@@ -74,7 +74,7 @@ const SingleMovie = () => {
       <GlobalStyles />
       <motion.section
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 0.8 } }}
+        animate={{ opacity: 1, transition: { duration: 1.5 } }}
       >
         <div className="flex-box">
           <motion.img

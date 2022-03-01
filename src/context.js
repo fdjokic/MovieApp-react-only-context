@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 export const API_KEY = process.env.REACT_APP_API_KEY;
-
 export const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API_KEY}`;
 const AppContext = React.createContext();
 
@@ -18,6 +17,8 @@ const AppProvider = ({ children }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [empty, setEmpty] = useState(false);
   const [nowInTheaters, setNowInTheaters] = useState(false);
+  const [width, setWidth] = useState(0);
+  const carousel = useRef(false);
 
   const mainUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US`;
@@ -29,6 +30,7 @@ const AppProvider = ({ children }) => {
     if (loading) {
       return <Loading />;
     }
+
     if (query) {
       url = `${searchUrl}${urlPage}${urlQuery}`;
       setNowInTheaters(false);
@@ -57,10 +59,21 @@ const AppProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    fetchMovies();
+    if (!carousel.current) {
+      carousel.current = true;
+      return;
+    }
+    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
 
+    //8912
+    //1034
+  });
+
+  useEffect(() => {
+    fetchMovies();
     // eslint-disable-next-line
   }, [nowInTheaters]);
+
   return (
     <AppContext.Provider
       value={{
@@ -82,6 +95,10 @@ const AppProvider = ({ children }) => {
         empty,
         fetchMovies,
         nowInTheaters,
+        setNowInTheaters,
+        width,
+        setWidth,
+        carousel,
       }}
     >
       {children}
