@@ -29,9 +29,6 @@ const AppProvider = ({ children }) => {
     const urlPage = `&page=${page}`;
     const urlQuery = `&query=${query}`;
     let url;
-    if (loading) {
-      return <Loading />;
-    }
 
     if (query) {
       url = `${searchUrl}${urlPage}${urlQuery}`;

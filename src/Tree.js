@@ -20,8 +20,7 @@ export const gridVariants = {
   animate: {
     opacity: 1,
     transition: {
-      delay: 0.5,
-      duration: 1,
+      duration: 0.8,
     },
   },
   exit: {
@@ -38,7 +37,7 @@ const h1Variants = {
   visible: {
     opacity: 1,
     transition: {
-      delay: 0.9,
+      delay: 0.3,
     },
   },
   exit: {

@@ -7,11 +7,12 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const sliderVariants = {
-  initial: { x: "100vw" },
+  initial: { opacity: 0 },
   animate: {
-    x: 0,
+    opacity: 1,
     transition: {
-      duration: 1,
+      duration: 1.5,
+      delay: 0.4,
     },
   },
   exit: {

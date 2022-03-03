@@ -25,7 +25,7 @@ const searchVariants = {
   },
 };
 const SearchMovies = () => {
-  const { query = "s", setQuery, fetchMovies, page } = useGlobalContext();
+  const { query, setQuery, fetchMovies, page } = useGlobalContext();
   const focusInput = useRef(null);
   const [filterList, setFilterList] = useState([]);
   const fetchList = async (url) => {

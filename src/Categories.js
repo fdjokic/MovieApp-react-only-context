@@ -59,8 +59,7 @@ const Categories = () => {
     const genresFiltered = popular.filter((movie) => {
       return movie.genre_ids.includes(activeGenre);
     });
-    if (genresFiltered.length < 1 && activeGenre !== 0) {
-      console.log("hey");
+    if (genresFiltered.length < 1 && activeGenre !== 0 && !nowInTheaters) {
       setEmpty(true);
     } else {
       setEmpty(false);
