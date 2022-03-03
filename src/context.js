@@ -19,7 +19,8 @@ const AppProvider = ({ children }) => {
   const [nowInTheaters, setNowInTheaters] = useState(false);
   const [width, setWidth] = useState(0);
   const carousel = useRef(false);
-  const [offsetW, setOffsetW] = useState();
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [topRated, setTopRated] = useState([]);
 
   const mainUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US`;
@@ -42,14 +43,28 @@ const AppProvider = ({ children }) => {
     setEmpty(true);
     setLoading(true);
     try {
+      // MOVIES (SEARCH AND IN THEATERS [IF STATEMENT] )
       const data = await axios(url);
       const movies = data.data.results;
+      // UPCOMING MOVIES
+      const data2 = await axios(
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US`
+      );
+      const upcomingMoviesData = data2.data.results;
+      //  POPULAR MOVIES
+      const data3 = await axios(
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US`
+      );
+      const topRatedMoviesData = data3.data.results;
+      // STATES FILLED AFTER AXIOS
+      setTopRated(topRatedMoviesData);
+      setUpcomingMovies(upcomingMoviesData);
       setEmpty(false);
       setPopular(movies);
       setFiltered(movies);
 
       setLoading(false);
-
+      // EMPTY ARRAY AFTER A SEARCH MESSAGE TRIGGER
       if (movies.length < 1) {
         setEmpty(true);
       } else {
@@ -85,6 +100,8 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        topRated,
+        upcomingMovies,
         filtered,
         popular,
         setFiltered,

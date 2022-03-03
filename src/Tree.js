@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 import { useGlobalContext } from "./context";
 import Loading from "./Loading";
 import { GlobalStyles } from "./themes";
-import MovieSlider from "./MovieSlider";
-import { useState } from "react";
-import Slider from "./Slider";
+import Slider from "./sliders/Slider";
+import SliderUpcoming from "./sliders/SliderUpcomingMovies";
+import SliderTopRated from "./sliders/SliderTopRated";
 
 export const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -59,7 +59,6 @@ const Tree = () => {
     isChecked,
     setIsChecked,
     nowInTheaters,
-    carousel = false,
   } = useGlobalContext();
 
   if (loading) {
@@ -75,7 +74,7 @@ const Tree = () => {
 
   return (
     <>
-      <GlobalStyles transition={`${(props) => props.theme.transition}`} />
+      <GlobalStyles />
       <Wrapper>
         <input
           className="input"
@@ -93,6 +92,14 @@ const Tree = () => {
               Now in theaters:
             </motion.h1>
             <Slider />
+            <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
+              Upcoming:
+            </motion.h1>
+            <SliderUpcoming />
+            <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
+              Top Rated:
+            </motion.h1>
+            <SliderTopRated />
             {/* <motion.section
               initial={{ x: "100vw" }}
               animate={{ x: 0 }}
@@ -117,34 +124,36 @@ const Tree = () => {
             </motion.section> */}
           </div>
         )}
-        <motion.div
-          layout
-          className="grid"
-          variants={gridVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-        >
-          {empty && (
-            <motion.h1
-              style={{ color: "red" }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              No movies match your search criteria.
-            </motion.h1>
-          )}
-          {!nowInTheaters &&
-            filtered.map((movie) => {
-              const { id } = movie;
-              return (
-                <Link to={`/movies/${id}`} key={id}>
-                  <Movie key={id} movie={movie} />
-                </Link>
-              );
-            })}
-        </motion.div>
+        <section>
+          <motion.div
+            layout
+            className="grid"
+            variants={gridVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            {empty && (
+              <motion.h1
+                style={{ color: "red" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                No movies match your search criteria.
+              </motion.h1>
+            )}
+            {!nowInTheaters &&
+              filtered.map((movie) => {
+                const { id } = movie;
+                return (
+                  <Link to={`/movies/${id}`} key={id}>
+                    <Movie key={id} movie={movie} />
+                  </Link>
+                );
+              })}
+          </motion.div>
+        </section>
       </Wrapper>
     </>
   );
@@ -152,7 +161,6 @@ const Tree = () => {
 
 const Wrapper = styled.div`
   color: ${(props) => props.theme.fontColor};
-  transition: ${(props) => props.theme.transition};
   .input {
     margin-left: 3rem;
     cursor: pointer;
@@ -187,8 +195,7 @@ const Wrapper = styled.div`
     transform: translate(100%);
   }
   h1 {
-    margin: 3rem auto;
-    text-align: center;
+    margin: 2rem;
     width: fit-content;
   }
   .grid {

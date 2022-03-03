@@ -107,9 +107,10 @@ const SearchMovies = () => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 1rem;
   width: fit-content;
-  margin: 1rem auto;
+  margin: 5rem auto;
   input {
     background-color: ${(props) => props.theme.input};
     text-transform: capitalize;

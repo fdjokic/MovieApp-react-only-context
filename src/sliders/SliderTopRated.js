@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai";
-import { useGlobalContext } from "./context";
-import MovieSlider from "./MovieSlider";
+import { useGlobalContext } from "../context";
+import MovieSlider from "../MovieSlider";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -20,8 +20,8 @@ const sliderVariants = {
   },
 };
 
-const Slider = () => {
-  const { filtered, carousel, next, prev } = useGlobalContext();
+const SliderTopRated = () => {
+  const { topRated, carousel, next, prev } = useGlobalContext();
 
   return (
     <Wrapper>
@@ -37,7 +37,7 @@ const Slider = () => {
           onClick={prev}
         />
         <div className="slider" ref={carousel}>
-          {filtered.map((movie) => {
+          {topRated.map((movie) => {
             const { id } = movie;
             return (
               <Link
@@ -102,4 +102,4 @@ const Wrapper = styled.div`
     cursor: pointer;
   }
 `;
-export default Slider;
+export default SliderTopRated;

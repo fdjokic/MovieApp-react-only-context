@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export const darkTheme = {
   navText: "-webkit-linear-gradient( #ff69b4, white)",
-  body: "#171515",
+  body: "linear-gradient(to left, #000000, #040404, #14151f)",
 
   fontColor: "#FFFFFF",
   border: "3px solid #ff69b4",
@@ -16,7 +16,9 @@ export const lightTheme = {
   navText: "-webkit-linear-gradient(black, hsla(0, 0%, 0%, 0.6))",
   icon: "black",
   border: "3px solid black",
-  body: "#c4c6c9",
+  // body: "#c4c6c9",
+
+  body: "linear-gradient(315deg, #ffffff 0%, #c4c6c9 74%)",
   fontColor: "#171515",
   font: "bold",
   cardShadow: "rgba(0, 0, 0, 0.8) 0px 14px 25px",
@@ -26,7 +28,7 @@ export const lightTheme = {
 
 export const GlobalStyles = createGlobalStyle`
 body {
-  
-  background-color: ${(props) => props.theme.body};
+  transition: ${(props) => props.theme.transition};
+  background: ${(props) => props.theme.body};
 }
 `;
