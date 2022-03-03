@@ -3,18 +3,24 @@ import styled from "styled-components";
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai";
 import { useGlobalContext } from "./context";
 import MovieSlider from "./MovieSlider";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 const url =
   "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
 
 const Slider = () => {
-  const { filtered } = useGlobalContext();
-  const { id } = useParams();
+  const { filtered, carousel, next, prev } = useGlobalContext();
+
   return (
     <Wrapper>
-      <AiOutlineLeftCircle size={70} className="slider-icon-left" />
-      <div className="slider">
-        {filtered.map((movie, index) => {
+      <AiOutlineLeftCircle
+        size={70}
+        className="slider-icon-left"
+        onClick={prev}
+      />
+
+      <div id="slider" ref={carousel}>
+        {filtered.map((movie) => {
           const { id } = movie;
           return (
             <Link
@@ -27,11 +33,14 @@ const Slider = () => {
           );
         })}
       </div>
-      <AiOutlineRightCircle size={70} className="slider-icon-right" />
+      <AiOutlineRightCircle
+        size={70}
+        className="slider-icon-right"
+        onClick={next}
+      />
     </Wrapper>
   );
 };
-
 const Wrapper = styled.div`
   width: 100%;
   height: 550px;
@@ -39,15 +48,15 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
 
-  .slider {
+  #slider {
     width: 100%;
     height: 100%;
     z-index: 1;
-    align-items: center;
     overflow-x: scroll;
-    scrollbar-width: none;
-    display: inline-block;
     white-space: nowrap;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    overflow-x: hidden;
   }
   .slider::-webkit-scrollbar {
     display: none;

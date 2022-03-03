@@ -204,21 +204,5 @@ const Wrapper = styled.div`
     justify-content: center;
     font-family: monospace;
   }
-  .carousel {
-    z-index: 1;
-    display: flex;
-    gap: 3rem;
-    cursor: grab;
-  }
-  section {
-    position: relative;
-    height: 550px;
-    background: rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    cursor: grab;
-    margin-left: 1rem;
-    padding: 1rem;
-    box-shadow: 0 1px 9px rgb(255 255 255 / 0.2);
-  }
 `;
 export default Tree;

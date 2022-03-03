@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const darkTheme = {
   navText: "-webkit-linear-gradient( #ff69b4, white)",
   body: "#171515",
+
   fontColor: "#FFFFFF",
   border: "3px solid #ff69b4",
   cardBorder: "3px solid #ff69b4",

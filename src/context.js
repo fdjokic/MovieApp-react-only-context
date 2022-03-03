@@ -19,7 +19,7 @@ const AppProvider = ({ children }) => {
   const [nowInTheaters, setNowInTheaters] = useState(false);
   const [width, setWidth] = useState(0);
   const carousel = useRef(false);
-  const [offsetW, setOffsetW] = useState(null);
+  const [offsetW, setOffsetW] = useState();
 
   const mainUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US`;
@@ -59,18 +59,24 @@ const AppProvider = ({ children }) => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     if (!carousel.current) {
       carousel.current = true;
       return;
     }
-    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
-    setOffsetW(carousel.current.offsetWidth);
+
     // eslint-disable-next-line
   });
+  const next = () => {
+    let slider = document.getElementById("slider");
+    slider.scrollLeft = slider.scrollLeft + carousel.current.offsetWidth;
+  };
+  const prev = () => {
+    let slider = document.getElementById("slider");
+    slider.scrollLeft = slider.scrollLeft - carousel.current.offsetWidth;
+  };
 
-  //8912
-  //1034
   useEffect(() => {
     fetchMovies();
     // eslint-disable-next-line
@@ -101,8 +107,8 @@ const AppProvider = ({ children }) => {
         width,
         setWidth,
         carousel,
-        offsetW,
-        setOffsetW,
+        next,
+        prev,
       }}
     >
       {children}
