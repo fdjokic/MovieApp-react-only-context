@@ -69,11 +69,11 @@ const AppProvider = ({ children }) => {
     // eslint-disable-next-line
   });
   const next = () => {
-    let slider = document.getElementById("slider");
+    let slider = document.querySelector(".slider");
     slider.scrollLeft = slider.scrollLeft + carousel.current.offsetWidth;
   };
   const prev = () => {
-    let slider = document.getElementById("slider");
+    let slider = document.querySelector(".slider");
     slider.scrollLeft = slider.scrollLeft - carousel.current.offsetWidth;
   };
 
