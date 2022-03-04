@@ -49,10 +49,13 @@ const Wrapper = styled.div`
     .movie {
       height: 250px;
       width: 200px;
+      margin: 0 0.5rem;
     }
   }
   @media (max-width: 768px) {
     .movie {
+      margin: 0 0.3rem;
+
       height: 200px;
       width: 150px;
     }

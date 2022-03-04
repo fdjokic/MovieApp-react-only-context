@@ -4,13 +4,18 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { BiCameraMovie } from "react-icons/bi";
 import { useGlobalContext } from "./context";
+import { getSuggestedQuery } from "@testing-library/react";
 
 const NavBar = () => {
-  const { setNowInTheaters } = useGlobalContext();
+  const { setNowInTheaters, setQuery } = useGlobalContext();
+  const backToHome = () => {
+    setNowInTheaters(true);
+    setQuery("");
+  };
   return (
     <>
       <Wrapper>
-        <Link to="/" className="link" onClick={() => setNowInTheaters(true)}>
+        <Link to="/" className="link" onClick={backToHome}>
           <div>
             <BiCameraMovie className="icon" />
             <h1>Movie Temple</h1>
