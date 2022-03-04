@@ -144,14 +144,10 @@ const Wrapper = styled.div`
       font-size: 1.1rem;
     }
     .slider-icon-left {
-      left: 2%;
-      top: 30%;
-      font-size: 2rem;
+      display: none;
     }
     .slider-icon-right {
-      font-size: 2rem;
-      right: 2%;
-      top: 30%;
+      display: none;
     }
   }
 `;
