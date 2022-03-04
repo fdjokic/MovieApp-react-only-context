@@ -10,7 +10,7 @@ const MovieSlider = ({ movie = [] }) => {
     <Wrapper>
       <div className="movie">
         <img
-          src={poster ? `https://image.tmdb.org/t/p/w500/${poster}` : url}
+          src={poster ? `https://image.tmdb.org/t/p/w400/${poster}` : url}
           alt={title}
         />
       </div>
@@ -21,11 +21,10 @@ const MovieSlider = ({ movie = [] }) => {
 const Wrapper = styled.div`
   .movie {
     border-radius: 15px;
-    width: 400px;
-    height: 500px;
+    width: 300px;
+    height: 350px;
     margin: 0 0.7rem;
     box-shadow: ${(props) => props.theme.cardShadow};
-    background-color: ${(props) => props.theme.movieBackground};
   }
   .movie img {
     border-radius: 12px;
@@ -33,7 +32,10 @@ const Wrapper = styled.div`
     height: 100%;
     object-fit: cover;
   }
+
   .movie:hover {
+    background-color: ${(props) => props.theme.movieBackground};
+
     border-bottom: ${(props) => props.theme.movieBottomBorder};
     transition: 0.2s;
   }

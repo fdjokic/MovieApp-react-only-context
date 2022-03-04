@@ -59,7 +59,7 @@ const Categories = () => {
     const genresFiltered = popular.filter((movie) => {
       return movie.genre_ids.includes(activeGenre);
     });
-    if (genresFiltered.length < 1 && activeGenre !== 0 && !nowInTheaters) {
+    if (genresFiltered.length < 1 && activeGenre !== 0) {
       setEmpty(true);
     } else {
       setEmpty(false);
@@ -149,14 +149,14 @@ const Wrapper = styled.div`
   align-items: center;
   flex-wrap: wrap;
   width: 70vw;
-  margin: 2rem auto;
+  margin: 1rem auto;
 
   button {
     margin: 0.5rem 0.8rem;
-    padding: 0.6rem;
+    padding: 0.3rem;
     border: ${(props) => props.theme.border};
     cursor: pointer;
-    min-width: 5rem;
+    min-width: 3.5rem;
     width: fit-content;
     color: ${(props) => props.theme.fontColor};
 
@@ -167,6 +167,7 @@ const Wrapper = styled.div`
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: bold;
+    font-size: 0.7rem;
   }
   .active {
     color: white;

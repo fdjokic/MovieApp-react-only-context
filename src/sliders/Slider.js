@@ -17,7 +17,7 @@ const sliderVariants = {
   },
   exit: {
     opacity: 0,
-    transition: 0.4,
+    transition: { duration: 0.4 },
   },
 };
 
@@ -83,6 +83,7 @@ const Wrapper = styled.div`
   .slider-icon-left {
     position: absolute;
     left: 2%;
+    top: 30%;
     z-index: 2;
     color: white;
   }
@@ -94,6 +95,8 @@ const Wrapper = styled.div`
   .slider-icon-right {
     color: white;
     right: 2%;
+    top: 30%;
+
     position: absolute;
     z-index: 2;
   }

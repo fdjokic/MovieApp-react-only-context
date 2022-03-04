@@ -25,7 +25,16 @@ const searchVariants = {
   },
 };
 const SearchMovies = () => {
-  const { query, setQuery, fetchMovies, page } = useGlobalContext();
+  const {
+    query = null,
+    setQuery,
+    fetchMovies,
+    page,
+    search,
+    setSearch,
+    setNowInTheaters,
+    setEmpty,
+  } = useGlobalContext();
   const focusInput = useRef(null);
   const [filterList, setFilterList] = useState([]);
   const fetchList = async (url) => {
@@ -44,7 +53,11 @@ const SearchMovies = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSearch(true);
     setQuery("");
+    if (!query && search) {
+      setNowInTheaters(false);
+    }
     fetchMovies(
       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`
     );
@@ -110,16 +123,16 @@ const Wrapper = styled.div`
   align-items: center;
   margin-bottom: 1rem;
   width: fit-content;
-  margin: 5rem auto;
+  margin: 3rem auto;
   input {
     background-color: ${(props) => props.theme.input};
     text-transform: capitalize;
     opacity: 0.7;
-    width: 40rem;
+    width: 30rem;
     height: 0.1rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
     border-radius: 15px 0;
-    padding: 1.5rem;
+    padding: 1rem;
     outline: none;
     border: 1px solid white;
     color: black;

@@ -21,6 +21,7 @@ const AppProvider = ({ children }) => {
   const carousel = useRef(false);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [topRated, setTopRated] = useState([]);
+  const [search, setSearch] = useState(false);
 
   const mainUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US`;
@@ -30,7 +31,7 @@ const AppProvider = ({ children }) => {
     const urlQuery = `&query=${query}`;
     let url;
 
-    if (query) {
+    if (query || search) {
       url = `${searchUrl}${urlPage}${urlQuery}`;
       setNowInTheaters(false);
     } else {
@@ -123,6 +124,7 @@ const AppProvider = ({ children }) => {
         carousel,
         next,
         prev,
+        setSearch,
       }}
     >
       {children}

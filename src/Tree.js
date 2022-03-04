@@ -20,13 +20,14 @@ export const gridVariants = {
   animate: {
     opacity: 1,
     transition: {
+      delay: 1.5,
       duration: 0.8,
     },
   },
   exit: {
-    opacity: 0,
+    opcaity: 0,
     transition: {
-      duration: 1,
+      duration: 2,
     },
   },
 };
@@ -43,7 +44,7 @@ const h1Variants = {
   exit: {
     opacity: 0,
     transition: {
-      delay: 0.5,
+      duration: 0.1,
     },
   },
 };
@@ -58,6 +59,7 @@ const Tree = () => {
     isChecked,
     setIsChecked,
     nowInTheaters,
+    search,
   } = useGlobalContext();
 
   if (loading) {
@@ -73,7 +75,9 @@ const Tree = () => {
 
   return (
     <>
+      {/* THEAM  */}
       <GlobalStyles />
+      {/* STYLED WRAPPER */}
       <Wrapper>
         <input
           className="input"
@@ -82,9 +86,11 @@ const Tree = () => {
           onChange={handleChange}
           onClick={() => themeToggler()}
         />
+        {/* BUTTONS AND SEARCH INPUT */}
         <Categories />
         <SearchMovies />
 
+        {/* SLIDERS IF MAIN PAGE */}
         {nowInTheaters && (
           <div>
             <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
@@ -123,36 +129,39 @@ const Tree = () => {
             </motion.section> */}
           </div>
         )}
-        <section>
-          <motion.div
-            layout
-            className="grid"
-            variants={gridVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            {empty && (
-              <motion.h1
-                style={{ color: "red" }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                No movies match your search criteria.
-              </motion.h1>
-            )}
-            {!nowInTheaters &&
-              filtered.map((movie) => {
-                const { id } = movie;
-                return (
-                  <Link to={`/movies/${id}`} key={id}>
-                    <Movie key={id} movie={movie} />
-                  </Link>
-                );
-              })}
-          </motion.div>
-        </section>
+        {/* MOVIE GRID OF SEARCH RESULTS  AND ERROR MESSAGE*/}
+        <motion.div
+          className="grid"
+          variants={gridVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          layout
+        >
+          {/* EMPTY ARRAY MESSAGE */}
+
+          {empty && (
+            <motion.h1
+              style={{ color: "red" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5 }}
+            >
+              No movies match your search criteria.
+            </motion.h1>
+          )}
+          {/* MOVIE GRID FILTERED BY SEARCH */}
+          {!nowInTheaters &&
+            !empty &&
+            filtered.map((movie) => {
+              const { id } = movie;
+              return (
+                <Link to={`/movies/${id}`} key={id}>
+                  <Movie key={id} movie={movie} />
+                </Link>
+              );
+            })}
+        </motion.div>
       </Wrapper>
     </>
   );
@@ -165,11 +174,11 @@ const Wrapper = styled.div`
     cursor: pointer;
     -webkit-appearance: none;
     position: relative;
-    width: 60px;
-    height: 30px;
+    width: 35px;
+    height: 20px;
     background: #ff69b4;
     background-size: cover;
-    border-radius: 50px;
+    border-radius: 30px;
     outline: none;
   }
 
@@ -178,8 +187,8 @@ const Wrapper = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     background: white;
     border-radius: 50px;
     transition: 0.5s;
@@ -194,7 +203,7 @@ const Wrapper = styled.div`
     transform: translate(100%);
   }
   h1 {
-    margin: 2rem;
+    margin: 1.5rem;
     width: fit-content;
   }
   .grid {

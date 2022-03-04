@@ -22,7 +22,7 @@ const NavBar = () => {
 };
 
 const Wrapper = styled.nav`
-  width: 90vw;
+  width: 25rem;
   height: 4rem;
   margin: 0 auto;
 
@@ -30,7 +30,7 @@ const Wrapper = styled.nav`
     background: ${(props) => props.theme.navText};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   }
   div {
@@ -42,7 +42,7 @@ const Wrapper = styled.nav`
   }
   .icon {
     color: ${(props) => props.theme.icon};
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
   .link {
     text-decoration: none;

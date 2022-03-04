@@ -13,7 +13,7 @@ import { GlobalStyles } from "./themes";
 
 const imageVariants = {
   initial: {
-    scale: 1.2,
+    scale: 0.7,
     x: 0,
   },
   animate: {

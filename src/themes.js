@@ -28,7 +28,6 @@ export const lightTheme = {
 
 export const GlobalStyles = createGlobalStyle`
 body {
-  transition: ${(props) => props.theme.transition};
   background: ${(props) => props.theme.body};
 }
 `;
