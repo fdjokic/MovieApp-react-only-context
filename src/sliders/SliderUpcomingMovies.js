@@ -102,7 +102,8 @@ const Wrapper = styled.div`
   }
   @media (max-width: 1200px) {
     section {
-      height: 350px;
+      height: 330px;
+      padding: 0.4;
     }
     h1 {
       font-size: 1.5rem;
@@ -120,25 +121,27 @@ const Wrapper = styled.div`
   }
   @media (max-width: 1024px) {
     section {
-      height: 300px;
+      height: 270px;
+      padding: 0.4rem;
     }
     h1 {
       font-size: 1.3rem;
     }
     .slider-icon-left {
       left: 2%;
-      top: 30%;
+      top: 35%;
       font-size: 2.5rem;
     }
     .slider-icon-right {
       font-size: 2.5rem;
       right: 2%;
-      top: 30%;
+      top: 35%;
     }
   }
   @media (max-width: 768px) {
     section {
-      height: 250px;
+      height: 210px;
+      padding: 0.2rem;
     }
     h1 {
       font-size: 1.1rem;
