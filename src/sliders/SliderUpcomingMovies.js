@@ -91,7 +91,6 @@ const Wrapper = styled.div`
     right: 2%;
     top: 30%;
     font-size: 4rem;
-
     position: absolute;
     z-index: 2;
   }
@@ -100,6 +99,9 @@ const Wrapper = styled.div`
     transition: 0.7s;
     cursor: pointer;
   }
+  h1 {
+    margin: 1.5rem;
+  }
   @media (max-width: 1200px) {
     section {
       height: 330px;
@@ -107,6 +109,7 @@ const Wrapper = styled.div`
     }
     h1 {
       font-size: 1.5rem;
+      margin: 1rem;
     }
     .slider-icon-left {
       font-size: 3.5rem;
@@ -126,6 +129,7 @@ const Wrapper = styled.div`
     }
     h1 {
       font-size: 1.3rem;
+      margin: 0.8rem;
     }
     .slider-icon-left {
       left: 2%;
@@ -144,6 +148,7 @@ const Wrapper = styled.div`
       padding: 0.2rem;
     }
     h1 {
+      margin: 0.5rem;
       font-size: 1.1rem;
     }
     .slider-icon-left {

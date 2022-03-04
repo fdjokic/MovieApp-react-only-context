@@ -94,9 +94,7 @@ const Tree = () => {
         {nowInTheaters && (
           <div className="sliders-container">
             <Slider />
-
             <SliderUpcoming />
-
             <SliderTopRated />
             {/* <motion.section
               initial={{ x: "100vw" }}
@@ -132,7 +130,6 @@ const Tree = () => {
           layout
         >
           {/* EMPTY ARRAY MESSAGE */}
-
           {empty && (
             <motion.h1
               style={{ color: "red" }}
@@ -195,10 +192,7 @@ const Wrapper = styled.div`
     transition: 0.5s;
     transform: translate(100%);
   }
-  h1 {
-    margin: 1.5rem;
-    width: fit-content;
-  }
+
   .grid {
     width: 80vw;
     display: grid;
