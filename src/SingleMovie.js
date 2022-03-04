@@ -146,25 +146,19 @@ const SingleMovie = () => {
 
 const Wrapper = styled.div`
   width: 75vw;
-  padding: 5rem;
+  padding: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10rem;
-
+  margin-left: 8rem;
   .img {
     margin-right: 4rem;
     margin-left: 5rem;
-    height: 55rem;
+    height: 37rem;
     border-radius: 10px;
     object-fit: cover;
   }
-  .wait-img {
-    height: 55rem;
-    object-fit: cover;
-    margin-right: 4rem;
-    margin-left: 5rem;
-  }
+
   .flex-box {
     display: flex;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -240,6 +234,17 @@ const Wrapper = styled.div`
       font-weight: 400;
       color: ${(props) => props.theme.fontColor};
     }
+  }
+  @media (max-width: 1200px) {
+    .img {
+      height: 80%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  }
+  @media (max-width: 1024px) {
+  }
+  @media (max-width: 768px) {
   }
 `;
 

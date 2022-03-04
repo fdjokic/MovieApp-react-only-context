@@ -4,22 +4,6 @@ import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai";
 import { useGlobalContext } from "../context";
 import MovieSlider from "../MovieSlider";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-
-const sliderVariants = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      duration: 1.5,
-      delay: 0.4,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: { duration: 0.4 },
-  },
-};
 
 const SliderTopRated = () => {
   const { topRated, carousel, next, prev } = useGlobalContext();
@@ -27,12 +11,7 @@ const SliderTopRated = () => {
   return (
     <Wrapper>
       <h1>Top Rated:</h1>
-      <motion.section
-        variants={sliderVariants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-      >
+      <section>
         <AiOutlineLeftCircle className="slider-icon-left" onClick={prev} />
         <div className="slider" ref={carousel}>
           {topRated.map((movie) => {
@@ -49,7 +28,7 @@ const SliderTopRated = () => {
           })}
         </div>
         <AiOutlineRightCircle className="slider-icon-right" onClick={next} />
-      </motion.section>
+      </section>
     </Wrapper>
   );
 };

@@ -17,7 +17,7 @@ const Movie = ({ movie = [] }) => {
 
   return (
     <Wrapper>
-      <motion.div variants={gridVariants} className="movie">
+      <motion.div layout variants={gridVariants} className="movie">
         <img
           src={poster ? `https://image.tmdb.org/t/p/w300/${poster}` : url}
           alt={title}

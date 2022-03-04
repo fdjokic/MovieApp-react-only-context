@@ -6,33 +6,13 @@ import MovieSlider from "../MovieSlider";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const sliderVariants = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      duration: 1.5,
-      delay: 0.4,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: { duration: 0.4 },
-  },
-};
-
 const Slider = () => {
   const { filtered, carousel, next, prev } = useGlobalContext();
 
   return (
     <Wrapper>
       <h1>Now in theaters:</h1>
-      <motion.section
-        variants={sliderVariants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-      >
+      <section>
         <AiOutlineLeftCircle className="slider-icon-left" onClick={prev} />
         <div className="slider" ref={carousel}>
           {filtered.map((movie) => {
@@ -49,17 +29,20 @@ const Slider = () => {
           })}
         </div>
         <AiOutlineRightCircle className="slider-icon-right" onClick={next} />
-      </motion.section>
+      </section>
     </Wrapper>
   );
 };
 const Wrapper = styled.div`
+  background: transparent;
+
   section {
     max-width: 100%;
     height: 400px;
     position: relative;
     display: flex;
     align-items: center;
+    background: transparent;
   }
   .slider {
     width: 100%;

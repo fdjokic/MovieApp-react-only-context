@@ -55,6 +55,7 @@ const SearchMovies = () => {
     e.preventDefault();
     setSearch(true);
     setQuery("");
+    setNowInTheaters(false);
     if (!query && search) {
       setNowInTheaters(false);
     }

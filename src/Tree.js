@@ -1,18 +1,29 @@
 import styled from "styled-components";
-import Movie from "./Movie";
 import Categories from "./Categories";
 import { motion } from "framer-motion";
 import SearchMovies from "./SearchMovies";
-import { Link } from "react-router-dom";
 import { useGlobalContext } from "./context";
-import Loading from "./Loading";
 import { GlobalStyles } from "./themes";
 import Slider from "./sliders/Slider";
 import SliderUpcoming from "./sliders/SliderUpcomingMovies";
 import SliderTopRated from "./sliders/SliderTopRated";
+import MoviesGrid from "./MoviesGrid";
+import Empty from "./Empty";
 
 export const API_KEY = process.env.REACT_APP_API_KEY;
 
+const sliderVariants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 1.5,
+    },
+  },
+  exit: {
+    opacity: 0,
+  },
+};
 export const gridVariants = {
   initial: {
     opacity: 0,
@@ -20,51 +31,19 @@ export const gridVariants = {
   animate: {
     opacity: 1,
     transition: {
-      delay: 1.5,
-      duration: 0.8,
+      delay: 1,
     },
   },
   exit: {
-    opcaity: 0,
-    transition: {
-      duration: 2,
-    },
-  },
-};
-const h1Variants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
     opacity: 1,
     transition: {
-      delay: 0.3,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.1,
+      delay: 0.5,
     },
   },
 };
-
 const Tree = () => {
-  const {
-    empty,
-    filtered,
-    loading,
-    theme,
-    setTheme,
-    isChecked,
-    setIsChecked,
-    nowInTheaters,
-    search,
-  } = useGlobalContext();
-
-  if (loading) {
-    return <Loading />;
-  }
+  const { empty, theme, setTheme, isChecked, setIsChecked, nowInTheaters } =
+    useGlobalContext();
 
   const themeToggler = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
@@ -75,7 +54,7 @@ const Tree = () => {
 
   return (
     <>
-      {/* THEAM  */}
+      {/* THEME  */}
       <GlobalStyles />
       {/* STYLED WRAPPER */}
       <Wrapper>
@@ -92,66 +71,42 @@ const Tree = () => {
 
         {/* SLIDERS IF MAIN PAGE */}
         {nowInTheaters && (
-          <div className="sliders-container">
+          <motion.div
+            className="sliders-container"
+            variants={sliderVariants}
+            initial="intial"
+            animate="animate"
+            exit="exit"
+          >
             <Slider />
             <SliderUpcoming />
             <SliderTopRated />
-            {/* <motion.section
-              initial={{ x: "100vw" }}
-              animate={{ x: 0 }}
-              transition={{ duration: 1 }}
-            >
-              <motion.div
-                className="carousel"
-                drag="x"
-                dragConstraints={{ right: 0, left: -width }}
-                ref={carousel}
-              >
-                {filtered.map((movie) => {
-                  const { id } = movie;
-                  return (
-                    <div to={`/movies/${id}`} key={id}>
-                      <MovieSlider key={id} movie={movie} />
-                    </div>
-                  );
-                })}
-              </motion.div>
-              <BtnSlider moveSlide={previousSlide} direction={"prev"} />
-            </motion.section> */}
-          </div>
+          </motion.div>
         )}
         {/* MOVIE GRID OF SEARCH RESULTS  AND ERROR MESSAGE*/}
-        <motion.div
-          className="grid"
-          variants={gridVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          layout
-        >
+        <div>
           {/* EMPTY ARRAY MESSAGE */}
           {empty && (
-            <motion.h1
-              style={{ color: "red" }}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.5 }}
+              transition={{ delay: 2 }}
             >
-              No movies match your search criteria.
-            </motion.h1>
+              <Empty />
+            </motion.div>
           )}
           {/* MOVIE GRID FILTERED BY SEARCH */}
-          {!nowInTheaters &&
-            !empty &&
-            filtered.map((movie) => {
-              const { id } = movie;
-              return (
-                <Link to={`/movies/${id}`} key={id}>
-                  <Movie key={id} movie={movie} />
-                </Link>
-              );
-            })}
-        </motion.div>
+          {!nowInTheaters && !empty && (
+            <motion.div
+              layout
+              variants={gridVariants}
+              initial="intial"
+              animate="animate"
+            >
+              <MoviesGrid />
+            </motion.div>
+          )}
+        </div>
       </Wrapper>
     </>
   );
@@ -192,20 +147,11 @@ const Wrapper = styled.div`
     transition: 0.5s;
     transform: translate(100%);
   }
-
-  .grid {
-    width: 80vw;
-    display: grid;
-    gap: 2rem;
-    margin: 0 auto;
-    padding-bottom: 5rem;
-    padding-top: 3rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    font-family: monospace;
+  .empty-message {
+    text-align: center;
+    color: red;
   }
+
   @media (max-width: 1200px) {
   }
   @media (max-width: 1024px) {
