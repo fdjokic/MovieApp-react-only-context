@@ -128,7 +128,7 @@ const Wrapper = styled.div`
     background-color: ${(props) => props.theme.input};
     text-transform: capitalize;
     opacity: 0.7;
-    width: 30rem;
+    width: 40vw;
     height: 0.1rem;
     font-size: 1rem;
     border-radius: 15px 0;

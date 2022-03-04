@@ -92,18 +92,11 @@ const Tree = () => {
 
         {/* SLIDERS IF MAIN PAGE */}
         {nowInTheaters && (
-          <div>
-            <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
-              Now in theaters:
-            </motion.h1>
+          <div className="sliders-container">
             <Slider />
-            <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
-              Upcoming:
-            </motion.h1>
+
             <SliderUpcoming />
-            <motion.h1 variants={h1Variants} initial="hidden" animate="visible">
-              Top Rated:
-            </motion.h1>
+
             <SliderTopRated />
             {/* <motion.section
               initial={{ x: "100vw" }}

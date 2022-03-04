@@ -39,6 +39,24 @@ const Wrapper = styled.div`
     border-bottom: ${(props) => props.theme.movieBottomBorder};
     transition: 0.2s;
   }
+  @media (max-width: 1200px) {
+    .movie {
+      height: 300px;
+      width: 250px;
+    }
+  }
+  @media (max-width: 1024px) {
+    .movie {
+      height: 250px;
+      width: 200px;
+    }
+  }
+  @media (max-width: 768px) {
+    .movie {
+      height: 200px;
+      width: 150px;
+    }
+  }
 `;
 
 export default MovieSlider;

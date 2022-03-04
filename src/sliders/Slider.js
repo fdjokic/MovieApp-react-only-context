@@ -26,17 +26,14 @@ const Slider = () => {
 
   return (
     <Wrapper>
+      <h1>Now in theaters:</h1>
       <motion.section
         variants={sliderVariants}
         initial="initial"
         animate="animate"
         exit="exit"
       >
-        <AiOutlineLeftCircle
-          size={70}
-          className="slider-icon-left"
-          onClick={prev}
-        />
+        <AiOutlineLeftCircle className="slider-icon-left" onClick={prev} />
         <div className="slider" ref={carousel}>
           {filtered.map((movie) => {
             const { id } = movie;
@@ -51,19 +48,15 @@ const Slider = () => {
             );
           })}
         </div>
-        <AiOutlineRightCircle
-          size={70}
-          className="slider-icon-right"
-          onClick={next}
-        />
+        <AiOutlineRightCircle className="slider-icon-right" onClick={next} />
       </motion.section>
     </Wrapper>
   );
 };
 const Wrapper = styled.div`
   section {
-    width: 100%;
-    height: 550px;
+    max-width: 100%;
+    height: 400px;
     position: relative;
     display: flex;
     align-items: center;
@@ -86,6 +79,7 @@ const Wrapper = styled.div`
     top: 30%;
     z-index: 2;
     color: white;
+    font-size: 4rem;
   }
   .slider-icon-left:hover {
     transform: rotate(360deg);
@@ -96,6 +90,7 @@ const Wrapper = styled.div`
     color: white;
     right: 2%;
     top: 30%;
+    font-size: 4rem;
 
     position: absolute;
     z-index: 2;
@@ -104,6 +99,60 @@ const Wrapper = styled.div`
     transform: rotate(360deg);
     transition: 0.7s;
     cursor: pointer;
+  }
+  @media (max-width: 1200px) {
+    section {
+      height: 350px;
+    }
+    h1 {
+      font-size: 1.5rem;
+    }
+    .slider-icon-left {
+      font-size: 3.5rem;
+      left: 2%;
+      top: 30%;
+    }
+    .slider-icon-right {
+      font-size: 3.5rem;
+      right: 2%;
+      top: 30%;
+    }
+  }
+  @media (max-width: 1024px) {
+    section {
+      height: 300px;
+    }
+    h1 {
+      font-size: 1.3rem;
+    }
+    .slider-icon-left {
+      left: 2%;
+      top: 30%;
+      font-size: 2.5rem;
+    }
+    .slider-icon-right {
+      font-size: 2.5rem;
+      right: 2%;
+      top: 30%;
+    }
+  }
+  @media (max-width: 768px) {
+    section {
+      height: 250px;
+    }
+    h1 {
+      font-size: 1.1rem;
+    }
+    .slider-icon-left {
+      left: 2%;
+      top: 30%;
+      font-size: 2rem;
+    }
+    .slider-icon-right {
+      font-size: 2rem;
+      right: 2%;
+      top: 30%;
+    }
   }
 `;
 export default Slider;
