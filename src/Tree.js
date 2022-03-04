@@ -212,5 +212,19 @@ const Wrapper = styled.div`
     justify-content: center;
     font-family: monospace;
   }
+  @media (max-width: 1200px) {
+  }
+  @media (max-width: 1024px) {
+  }
+  @media (max-width: 768px) {
+    .input {
+      width: 25px;
+      height: 15px;
+    }
+    .input:before {
+      height: 15px;
+      width: 15px;
+    }
+  }
 `;
 export default Tree;

@@ -22,7 +22,7 @@ const NavBar = () => {
 };
 
 const Wrapper = styled.nav`
-  width: 25rem;
+  width: 70vw;
   height: 4rem;
   margin: 0 auto;
 
@@ -46,6 +46,30 @@ const Wrapper = styled.nav`
   }
   .link {
     text-decoration: none;
+  }
+  @media (max-width: 1200px) {
+    .icon {
+      font-size: 2.3rem;
+    }
+    h1 {
+      font-size: 2.3rem;
+    }
+    @media (max-width: 1024px) {
+      .icon {
+        font-size: 2.3rem;
+      }
+      h1 {
+        font-size: 2.3rem;
+      }
+    }
+    @media (max-width: 768px) {
+      .icon {
+        font-size: 1.8rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
   }
 `;
 
