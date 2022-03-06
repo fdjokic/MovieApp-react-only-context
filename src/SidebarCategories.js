@@ -67,8 +67,7 @@ const Wrapper = styled.div`
   }
   @media (max-width: 768px) {
     .sidebar {
-      display: flex;
-      flex-direction: column;
+      display: inline-block;
       transform: translateX(-100%);
       transition: 1s;
       z-index: -1;
@@ -80,6 +79,7 @@ const Wrapper = styled.div`
       width: fit-content;
       height: fit-content;
       background: transparent;
+      scroll-behavior: smooth;
     }
     .open {
       transform: translateY(0);

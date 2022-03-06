@@ -4,10 +4,9 @@ import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai";
 import { useGlobalContext } from "../context";
 import MovieSlider from "../MovieSlider";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 const Slider = () => {
-  const { filtered, carousel, next, prev, inTheaters } = useGlobalContext();
+  const { carousel, next, prev, inTheaters } = useGlobalContext();
 
   return (
     <Wrapper>
