@@ -73,7 +73,6 @@ const Wrapper = styled.div`
       left: 0;
       overflow: hidden;
 
-      bottom: 10%;
       width: fit-content;
       height: fit-content;
       background: transparent;
