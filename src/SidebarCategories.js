@@ -40,6 +40,7 @@ const Wrapper = styled.div`
     transition: 0.5s;
   }
   button {
+    color: ${(props) => props.theme.sideBtnFont};
     padding: 5px;
     border: ${(props) => props.theme.border};
     border-radius: 10px;

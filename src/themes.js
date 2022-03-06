@@ -12,6 +12,7 @@ export const darkTheme = {
   movieBottomBorder: "10px solid #6495ed",
   movieBackground: "#6495ed",
   sideBtnColor: "hotpink",
+  sideBtnFont: "#FFFFFF",
 };
 export const lightTheme = {
   navText: "-webkit-linear-gradient(black, hsla(0, 0%, 0%, 0.6))",
@@ -26,6 +27,7 @@ export const lightTheme = {
   movieBottomBorder: "10px solid #36454F",
   movieBackground: "#36454F",
   sideBtnColor: "black",
+  sideBtnFont: "hotpink",
 };
 
 export const GlobalStyles = createGlobalStyle`
