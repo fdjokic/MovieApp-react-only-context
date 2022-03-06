@@ -63,16 +63,16 @@ const Wrapper = styled.div`
   }
   @media (max-width: 768px) {
     .sidebar {
-      min-height: 100%;
+      max-height: 80%;
+
       display: inline-block;
       transform: translateX(-100%);
       transition: 1s;
       z-index: 100;
       position: fixed;
-      top: 8%;
+      top: 10%;
       left: 0;
-      overflow: hidden;
-      bottom: 5%;
+      overflow-y: scroll;
       width: fit-content;
       height: fit-content;
       background: transparent;
