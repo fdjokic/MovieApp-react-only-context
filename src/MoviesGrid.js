@@ -7,7 +7,7 @@ import styled from "styled-components";
 import Loading from "./Loading";
 
 const MoviesGrid = () => {
-  const { filtered, loading, searchLoading } = useGlobalContext();
+  const { filtered, searchLoading, closeSidebar } = useGlobalContext();
   if (searchLoading) {
     return <Loading />;
   }
@@ -17,7 +17,7 @@ const MoviesGrid = () => {
         {filtered.map((movie) => {
           const { id } = movie;
           return (
-            <Link to={`/movies/${id}`} key={id}>
+            <Link to={`/movies/${id}`} key={id} onClick={closeSidebar}>
               <Movie key={id} movie={movie} />
             </Link>
           );

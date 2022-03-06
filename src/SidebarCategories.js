@@ -27,6 +27,11 @@ const SidebarCategories = () => {
 };
 const Wrapper = styled.div`
   width: fit-content;
+  aside {
+    overflow-y: scroll;
+    min-height: 100%;
+  }
+
   .btn-wrapper {
     background: ${(props) => props.theme.sideBtnColor};
     width: fit-content;
@@ -68,8 +73,10 @@ const Wrapper = styled.div`
       transition: 1s;
       z-index: -1;
       position: fixed;
-      top: 6;
+      top: 4;
       left: 0;
+      bottom: 10;
+      overflow-y: scroll;
       width: fit-content;
       height: fit-content;
       background: transparent;
