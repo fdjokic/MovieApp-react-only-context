@@ -63,7 +63,7 @@ const Wrapper = styled.div`
   }
   @media (max-width: 768px) {
     .sidebar {
-      max-height: 70%;
+      max-height: 75%;
 
       display: inline-block;
       transform: translateX(-100%);
