@@ -26,17 +26,18 @@ const searchVariants = {
 };
 const SearchMovies = () => {
   const {
-    query = null,
+    query = "s",
     setQuery,
     fetchMovies,
     page,
-    search,
-    setSearch,
+
     setNowInTheaters,
     setEmpty,
+    searchMovies,
   } = useGlobalContext();
   const focusInput = useRef(null);
   const [filterList, setFilterList] = useState([]);
+
   const fetchList = async (url) => {
     try {
       const data = await axios(url);
@@ -53,15 +54,10 @@ const SearchMovies = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearch(true);
     setQuery("");
     setNowInTheaters(false);
-    if (!query && search) {
-      setNowInTheaters(false);
-    }
-    fetchMovies(
-      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${query}`
-    );
+    if (!query) return;
+    searchMovies();
   };
 
   // USE EFFECT MOVIES

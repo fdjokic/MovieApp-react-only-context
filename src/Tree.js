@@ -98,7 +98,6 @@ const Tree = () => {
           {/* MOVIE GRID FILTERED BY SEARCH */}
           {!nowInTheaters && !empty && (
             <motion.div
-              layout
               variants={gridVariants}
               initial="intial"
               animate="animate"

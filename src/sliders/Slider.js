@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Slider = () => {
-  const { filtered, carousel, next, prev } = useGlobalContext();
+  const { filtered, carousel, next, prev, inTheaters } = useGlobalContext();
 
   return (
     <Wrapper>
@@ -15,7 +15,7 @@ const Slider = () => {
       <section>
         <AiOutlineLeftCircle className="slider-icon-left" onClick={prev} />
         <div className="slider" ref={carousel}>
-          {filtered.map((movie) => {
+          {inTheaters.map((movie) => {
             const { id } = movie;
             return (
               <Link

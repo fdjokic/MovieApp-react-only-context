@@ -17,7 +17,7 @@ const Movie = ({ movie = [] }) => {
 
   return (
     <Wrapper>
-      <motion.div layout variants={gridVariants} className="movie">
+      <motion.div variants={gridVariants} className="movie">
         <img
           src={poster ? `https://image.tmdb.org/t/p/w300/${poster}` : url}
           alt={title}
@@ -74,7 +74,7 @@ const Wrapper = styled.div`
   }
   .movie:hover .stars {
     opacity: 1;
-    transition: 0.6s ease-in;
+    transition: 0.3s ease-in;
   }
   .stars {
     padding: 0.2rem;

@@ -7,8 +7,8 @@ import styled from "styled-components";
 import Loading from "./Loading";
 
 const MoviesGrid = () => {
-  const { filtered, loading } = useGlobalContext();
-  if (loading) {
+  const { filtered, loading, searchLoading } = useGlobalContext();
+  if (searchLoading) {
     return <Loading />;
   }
   return (
