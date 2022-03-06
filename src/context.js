@@ -21,6 +21,7 @@ const AppProvider = ({ children }) => {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [inTheaters, setInTheaters] = useState([]);
+  const [sideBar, setSideBar] = useState(false);
 
   const mainUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US`;
@@ -105,6 +106,41 @@ const AppProvider = ({ children }) => {
     // eslint-disable-next-line
   }, []);
 
+  // FETCH GENRES
+  const fetchGenre = async (url) => {
+    try {
+      const data = await axios(url);
+      setGenres(data.data.genres);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // USE EFFECT GENRES
+  useEffect(() => {
+    const genresFiltered = popular.filter((movie) => {
+      return movie.genre_ids.includes(activeGenre);
+    });
+    if (genresFiltered.length < 1 && activeGenre !== 0) {
+      setEmpty(true);
+    } else {
+      setEmpty(false);
+    }
+    if (activeGenre === 0) {
+      setFiltered(popular);
+    } else {
+      setFiltered(genresFiltered);
+    }
+
+    fetchGenre(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
+    );
+
+    // eslint-disable-next-line
+  }, [activeGenre]);
+
+  const closeSidebar = () => {
+    setSideBar(false);
+  };
   return (
     <AppContext.Provider
       value={{
@@ -139,6 +175,10 @@ const AppProvider = ({ children }) => {
         searchMovies,
         setSearchLoading,
         searchLoading,
+        sideBar,
+        setSideBar,
+
+        closeSidebar,
       }}
     >
       {children}

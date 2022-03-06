@@ -9,6 +9,7 @@ import NavBar from "./NavBar";
 import { lightTheme, darkTheme } from "./themes";
 import { useGlobalContext } from "./context";
 import { ThemeProvider } from "styled-components";
+import SidebarCategories from "./SidebarCategories";
 
 function App() {
   const location = useLocation();
@@ -18,11 +19,14 @@ function App() {
     <>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <NavBar />
+        <SidebarCategories />
+
         <AnimatePresence exitBeforeEnter>
           <Switch key={location.pathname} location={location}>
             <Route exact path="/">
               <Tree />
             </Route>
+
             <Route path="/movies/:id" children={<SingleMovie />} />
             <Route path="*">
               <Error />

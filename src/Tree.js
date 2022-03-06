@@ -42,15 +42,7 @@ export const gridVariants = {
   },
 };
 const Tree = () => {
-  const { empty, theme, setTheme, isChecked, setIsChecked, nowInTheaters } =
-    useGlobalContext();
-
-  const themeToggler = () => {
-    theme === "light" ? setTheme("dark") : setTheme("light");
-  };
-  const handleChange = () => {
-    setIsChecked(!isChecked);
-  };
+  const { empty, nowInTheaters } = useGlobalContext();
 
   return (
     <>
@@ -58,13 +50,6 @@ const Tree = () => {
       <GlobalStyles />
       {/* STYLED WRAPPER */}
       <Wrapper>
-        <input
-          className="input"
-          value={isChecked}
-          type="checkbox"
-          onChange={handleChange}
-          onClick={() => themeToggler()}
-        />
         {/* BUTTONS AND SEARCH INPUT */}
         <Categories />
         <SearchMovies />
@@ -113,39 +98,7 @@ const Tree = () => {
 
 const Wrapper = styled.div`
   color: ${(props) => props.theme.fontColor};
-  .input {
-    margin-left: 3rem;
-    cursor: pointer;
-    -webkit-appearance: none;
-    position: relative;
-    width: 35px;
-    height: 20px;
-    background: #ff69b4;
-    background-size: cover;
-    border-radius: 30px;
-    outline: none;
-  }
 
-  .input:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background: white;
-    border-radius: 50px;
-    transition: 0.5s;
-  }
-
-  .input:checked {
-    background: black;
-  }
-
-  .input:checked:before {
-    transition: 0.5s;
-    transform: translate(100%);
-  }
   .empty-message {
     text-align: center;
     color: red;
@@ -156,14 +109,6 @@ const Wrapper = styled.div`
   @media (max-width: 1024px) {
   }
   @media (max-width: 768px) {
-    .input {
-      width: 25px;
-      height: 15px;
-    }
-    .input:before {
-      height: 15px;
-      width: 15px;
-    }
   }
 `;
 export default Tree;

@@ -28,11 +28,10 @@ const SearchMovies = () => {
   const {
     query = "s",
     setQuery,
-    fetchMovies,
     page,
 
     setNowInTheaters,
-    setEmpty,
+
     searchMovies,
   } = useGlobalContext();
   const focusInput = useRef(null);

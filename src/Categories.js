@@ -1,9 +1,6 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "./context";
-import { API_KEY } from "./context";
-import axios from "axios";
 
 const buttonVariants = {
   hidden: {
@@ -34,111 +31,49 @@ const buttonVariants = {
 };
 
 const Categories = () => {
-  const {
-    activeGenre,
-    setActiveGenre,
-    genres,
-    setFiltered,
-    setGenres,
-    popular,
-    nowInTheaters,
-  } = useGlobalContext();
-
-  const [empty, setEmpty] = useState(false);
-  // FETCH
-  const fetchGenre = async (url) => {
-    try {
-      const data = await axios(url);
-      setGenres(data.data.genres);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  // USE EFFECT GENRES
-  useEffect(() => {
-    const genresFiltered = popular.filter((movie) => {
-      return movie.genre_ids.includes(activeGenre);
-    });
-    if (genresFiltered.length < 1 && activeGenre !== 0) {
-      setEmpty(true);
-    } else {
-      setEmpty(false);
-    }
-    if (activeGenre === 0) {
-      setFiltered(popular);
-    } else {
-      setFiltered(genresFiltered);
-    }
-
-    fetchGenre(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
-    );
-
-    // eslint-disable-next-line
-  }, [activeGenre]);
+  const { activeGenre, setActiveGenre, genres, nowInTheaters } =
+    useGlobalContext();
 
   return (
     <Wrapper>
-      {!nowInTheaters && (
-        <motion.div
-          variants={buttonVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          {/* <motion.button
-          variants={buttonVariants}
-          whileHover="hover"
-          className="page"
-          onClick={() =>
-            setPage((oldPage) => {
-              if (oldPage <= 1) {
-                return (oldPage = 1);
-              }
-              return oldPage - 1;
-            })
-          }
-        >
-          previous
-        </motion.button> */}
-          <button
-            onClick={() => setActiveGenre(0)}
-            className={activeGenre === 0 ? "active" : null}
+      <div className="container">
+        {!nowInTheaters && (
+          <motion.div
+            className="categories-container"
+            variants={buttonVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
           >
-            All
-          </button>
-
-          {genres.map((genre) => {
-            const { id, name } = genre;
-
-            return (
-              <button
-                key={id}
-                onClick={() => setActiveGenre(id)}
-                className={genre.id === activeGenre ? "active" : null}
-              >
-                {name}
-              </button>
-            );
-          })}
-
-          {/* <motion.button
-          variants={buttonVariants}
-          whileHover="hover"
-          className="page"
-          onClick={() => setPage((oldPage) => oldPage + 1)}
-        >
-          next
-        </motion.button> */}
-        </motion.div>
-      )}
-      {empty && (
-        <h2
-          style={{ color: "red", fontFamily: "monospace", marginTop: "4rem" }}
-        >
-          No movies matched your category search.
-        </h2>
-      )}
+            <button
+              onClick={() => setActiveGenre(0)}
+              className={activeGenre === 0 ? "active" : null}
+            >
+              All
+            </button>
+            {genres.map((genre) => {
+              const { id, name } = genre;
+              return (
+                <button
+                  key={id}
+                  onClick={() => setActiveGenre(id)}
+                  className={genre.id === activeGenre ? "active" : null}
+                >
+                  {name}
+                </button>
+              );
+            })}
+            {/* <motion.button
+            variants={buttonVariants}
+            whileHover="hover"
+            className="page"
+            onClick={() => setPage((oldPage) => oldPage + 1)}
+          > 
+            next
+          </motion.button> */}
+          </motion.div>
+        )}
+      </div>
     </Wrapper>
   );
 };
@@ -151,6 +86,9 @@ const Wrapper = styled.div`
   width: 70vw;
   margin: 1rem auto;
 
+  .icon {
+    display: none;
+  }
   button {
     margin: 0.5rem 0.8rem;
     padding: 0.3rem;
@@ -173,6 +111,15 @@ const Wrapper = styled.div`
     color: white;
     border: 2px solid white;
     background-color: #ff69b4;
+  }
+  @media (max-width: 1200px) {
+  }
+  @media (max-width: 1024px) {
+  }
+  @media (max-width: 768px) {
+    .categories-container {
+      display: none;
+    }
   }
 `;
 
