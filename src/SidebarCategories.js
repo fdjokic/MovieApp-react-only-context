@@ -71,9 +71,9 @@ const Wrapper = styled.div`
       position: fixed;
       top: 7%;
       left: 0;
+      overflow: hidden;
+
       bottom: 10%;
-      overflow-y: scroll;
-      overflow-x: hidden;
       width: fit-content;
       height: fit-content;
       background: transparent;
