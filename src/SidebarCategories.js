@@ -69,7 +69,7 @@ const Wrapper = styled.div`
       transition: 1s;
       z-index: 100;
       position: fixed;
-      top: 10%;
+      top: 8%;
       left: 0;
       overflow: hidden;
       bottom: 5%;
