@@ -29,7 +29,7 @@ const NavBar = () => {
   };
   return (
     <>
-      <Sidebar>
+      <Wrapper>
         <input
           className="input"
           value={isChecked}
@@ -47,12 +47,12 @@ const NavBar = () => {
           className="hamburger"
           onClick={() => setSideBar(!sideBar)}
         />
-      </Sidebar>
+      </Wrapper>
     </>
   );
 };
 
-const Sidebar = styled.nav`
+const Wrapper = styled.nav`
   width: 60vw;
   height: 4rem;
   display: flex;

@@ -27,10 +27,6 @@ const SidebarCategories = () => {
 };
 const Wrapper = styled.div`
   width: fit-content;
-  aside {
-    overflow-y: scroll;
-    min-height: 100%;
-  }
 
   .btn-wrapper {
     background: ${(props) => props.theme.sideBtnColor};
@@ -67,19 +63,24 @@ const Wrapper = styled.div`
   }
   @media (max-width: 768px) {
     .sidebar {
+      min-height: 100%;
       display: inline-block;
       transform: translateX(-100%);
       transition: 1s;
-      z-index: -1;
+      z-index: 100;
       position: fixed;
-      top: 4;
+      top: 10%;
       left: 0;
-      bottom: 10;
       overflow-y: scroll;
+      overflow-x: hidden;
       width: fit-content;
       height: fit-content;
       background: transparent;
       scroll-behavior: smooth;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      display: none;
     }
     .open {
       transform: translateY(0);
