@@ -72,7 +72,8 @@ const Wrapper = styled.div`
   }
   @media (max-width: 768px) {
     .number {
-      margin-right: 0.5rem;
+      font-size: 0.9rem;
+      margin-right: 0.3rem;
     }
   }
 `;
