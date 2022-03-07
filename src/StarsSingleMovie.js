@@ -66,6 +66,7 @@ const Wrapper = styled.div`
     }
     .number {
       font-size: 1rem;
+      margin-right: 0.6rem;
     }
   }
   @media (max-width: 768px) {

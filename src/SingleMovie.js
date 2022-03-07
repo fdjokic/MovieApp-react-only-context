@@ -289,7 +289,7 @@ const Wrapper = styled.div`
     }
     .img {
       margin-bottom: 2rem;
-      height: 80%;
+      height: 30rem;
     }
     h1 {
       font-size: 1.3rem;
