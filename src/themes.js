@@ -20,7 +20,7 @@ export const lightTheme = {
   border: "3px solid black",
   // body: "#c4c6c9",
   hamburgerColor: "black",
-  body: "linear-gradient(315deg, #ffffff 0%, #c4c6c9 74%)",
+  body: "linear-gradient(to left, #ffffff 0%, #c4c6c9 74%)",
   fontColor: "#171515",
   font: "bold",
   cardShadow: "rgba(0, 0, 0, 0.8) 0px 14px 25px",
