@@ -40,7 +40,7 @@ const NavBar = () => {
           onClick={() => themeToggler()}
         />
         <Link to="/" className="link" onClick={backToHome}>
-          <div>
+          <div onClick={() => setShowHamburger(false)}>
             <BiCameraMovie className="icon" />
             <h1>Movie Temple</h1>
           </div>

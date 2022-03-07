@@ -22,7 +22,9 @@ const Empty = () => {
   return (
     <div>
       {/* EMPTY ARRAY MESSAGE */}
-      <h1>No movies match your search criteria.</h1>
+      <h1 style={{ textAlign: "center", color: "red" }}>
+        No movies match your search criteria.
+      </h1>
     </div>
   );
 };
