@@ -3,13 +3,22 @@ import { useGlobalContext } from "./context";
 import styled from "styled-components";
 
 const SidebarCategories = () => {
-  const { sideBar, genres, setActiveGenre, nowInTheaters, closeSidebar } =
-    useGlobalContext();
+  const {
+    sideBar,
+    genres,
+    setActiveGenre,
+    nowInTheaters,
+    closeSidebar,
+    activeGenre,
+  } = useGlobalContext();
 
   return (
     <Wrapper>
       {!nowInTheaters && (
         <aside className={sideBar ? "sidebar open" : "sidebar"}>
+          <div className="btn-wrapper" onClick={closeSidebar}>
+            <button onClick={() => setActiveGenre(0)}>All</button>
+          </div>
           {genres.map((genre) => {
             const { id, name } = genre;
             return (

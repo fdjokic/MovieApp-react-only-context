@@ -29,10 +29,9 @@ const SearchMovies = () => {
     query = "s",
     setQuery,
     page,
-
     setNowInTheaters,
-
     searchMovies,
+    setShowHamburger,
   } = useGlobalContext();
   const focusInput = useRef(null);
   const [filterList, setFilterList] = useState([]);
@@ -53,6 +52,7 @@ const SearchMovies = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShowHamburger(true);
     setQuery("");
     setNowInTheaters(false);
     if (!query) return;

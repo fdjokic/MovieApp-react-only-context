@@ -15,6 +15,8 @@ const NavBar = () => {
     theme,
     setTheme,
     sideBar,
+    showHamburger,
+    setShowHamburger,
   } = useGlobalContext();
   const backToHome = () => {
     setNowInTheaters(true);
@@ -44,7 +46,7 @@ const NavBar = () => {
           </div>
         </Link>
         <GiHamburgerMenu
-          className="hamburger"
+          className={showHamburger ? "show-hamburger" : "hamburger"}
           onClick={() => setSideBar(!sideBar)}
         />
       </Wrapper>
@@ -53,14 +55,12 @@ const NavBar = () => {
 };
 
 const Wrapper = styled.nav`
-  width: 60vw;
+  width: 95vw;
   height: 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .hamburger {
-    display: none;
-  }
+
   .input {
     margin-left: 3rem;
     cursor: pointer;
@@ -134,9 +134,6 @@ const Wrapper = styled.nav`
       }
     }
     @media (max-width: 768px) {
-      width: 95vw;
-      justify-content: space-between;
-
       .icon {
         font-size: 1.8rem;
       }
@@ -152,13 +149,17 @@ const Wrapper = styled.nav`
         height: 15px;
         width: 15px;
       }
-      .hamburger {
+      .show-hamburger {
         color: ${(props) => props.theme.icon};
         display: block;
         font-size: 1.7rem;
         cursor: pointer;
+        opacity: 1;
       }
-      .hamburger:hover {
+      .hamburger {
+        opacity: 0;
+      }
+      .show-hamburger:hover {
         transform: rotate(180deg);
         color: ${(props) => props.theme.hamburgerColor};
         transition: 0.7s;

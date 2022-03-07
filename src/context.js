@@ -22,6 +22,7 @@ const AppProvider = ({ children }) => {
   const [topRated, setTopRated] = useState([]);
   const [inTheaters, setInTheaters] = useState([]);
   const [sideBar, setSideBar] = useState(false);
+  const [showHamburger, setShowHamburger] = useState(false);
 
   const mainUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US`;
@@ -177,8 +178,9 @@ const AppProvider = ({ children }) => {
         searchLoading,
         sideBar,
         setSideBar,
-
         closeSidebar,
+        showHamburger,
+        setShowHamburger,
       }}
     >
       {children}

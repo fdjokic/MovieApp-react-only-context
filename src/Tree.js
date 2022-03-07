@@ -42,7 +42,7 @@ export const gridVariants = {
   },
 };
 const Tree = () => {
-  const { empty, nowInTheaters } = useGlobalContext();
+  const { empty, nowInTheaters, setShowHamburger } = useGlobalContext();
 
   return (
     <>
