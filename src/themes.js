@@ -23,7 +23,7 @@ export const lightTheme = {
   body: "linear-gradient(to left, #ffffff 0%, #c4c6c9 74%)",
   fontColor: "#171515",
   font: "bold",
-  cardShadow: "rgba(0, 0, 0, 0.8) 0px 14px 25px",
+  cardShadow: "rgba(0, 0, 0, 0.8) 0px 3px 9px",
   movieBottomBorder: "10px solid #36454F",
   movieBackground: "#36454F",
   sideBtnColor: "black",
