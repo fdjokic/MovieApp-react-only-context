@@ -110,7 +110,9 @@ const Wrapper = styled.nav`
     gap: 1rem;
     margin: 1rem auto;
   }
-
+  .show-hamburger {
+    opacity: 0;
+  }
   .icon {
     color: ${(props) => props.theme.icon};
     font-size: 2.5rem;
@@ -119,6 +121,9 @@ const Wrapper = styled.nav`
     text-decoration: none;
   }
   @media (max-width: 1200px) {
+    .show-hamburger {
+      opacity: 0;
+    }
     .icon {
       font-size: 2.3rem;
     }
@@ -126,6 +131,9 @@ const Wrapper = styled.nav`
       font-size: 2.3rem;
     }
     @media (max-width: 1024px) {
+      .show-hamburger {
+        opacity: 0;
+      }
       .icon {
         font-size: 2.3rem;
       }
