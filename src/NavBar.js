@@ -41,8 +41,8 @@ const NavBar = () => {
         />
         <Link to="/" className="link" onClick={backToHome}>
           <div onClick={() => setShowHamburger(false)}>
-            <BiCameraMovie className="icon" />
-            <h1>Movie Temple</h1>
+            <BiCameraMovie className="icon" onClick={() => setSideBar(false)} />
+            <h1 onClick={() => setSideBar(false)}>Movie Temple</h1>
           </div>
         </Link>
         <GiHamburgerMenu

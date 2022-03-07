@@ -71,7 +71,7 @@ const Tree = () => {
         {/* MOVIE GRID OF SEARCH RESULTS  AND ERROR MESSAGE*/}
         <div>
           {/* EMPTY ARRAY MESSAGE */}
-          {empty && (
+          {empty && !nowInTheaters && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

@@ -32,6 +32,8 @@ const SearchMovies = () => {
     setNowInTheaters,
     searchMovies,
     setShowHamburger,
+    setEmpty,
+    empty,
   } = useGlobalContext();
   const focusInput = useRef(null);
   const [filterList, setFilterList] = useState([]);
@@ -55,6 +57,7 @@ const SearchMovies = () => {
     setShowHamburger(true);
     setQuery("");
     setNowInTheaters(false);
+
     if (!query) return;
     searchMovies();
   };

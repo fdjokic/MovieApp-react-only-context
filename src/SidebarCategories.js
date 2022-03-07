@@ -3,14 +3,8 @@ import { useGlobalContext } from "./context";
 import styled from "styled-components";
 
 const SidebarCategories = () => {
-  const {
-    sideBar,
-    genres,
-    setActiveGenre,
-    nowInTheaters,
-    closeSidebar,
-    activeGenre,
-  } = useGlobalContext();
+  const { sideBar, genres, setActiveGenre, nowInTheaters, closeSidebar } =
+    useGlobalContext();
 
   return (
     <Wrapper>

@@ -80,6 +80,11 @@ const AppProvider = ({ children }) => {
       setFiltered(movies);
 
       setSearchLoading(false);
+      if (movies.length < 1) {
+        setEmpty(true);
+      } else {
+        setEmpty(false);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -121,15 +126,16 @@ const AppProvider = ({ children }) => {
     const genresFiltered = popular.filter((movie) => {
       return movie.genre_ids.includes(activeGenre);
     });
-    if (genresFiltered.length < 1 && activeGenre !== 0) {
-      setEmpty(true);
-    } else {
-      setEmpty(false);
-    }
+
     if (activeGenre === 0) {
       setFiltered(popular);
     } else {
       setFiltered(genresFiltered);
+    }
+    if (genresFiltered.length < 1 && activeGenre !== 0) {
+      setEmpty(true);
+    } else {
+      setEmpty(false);
     }
 
     fetchGenre(
