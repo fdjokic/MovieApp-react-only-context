@@ -61,15 +61,19 @@ const Wrapper = styled.div`
       font-size: 0.8rem;
     }
     p {
+      margin-left: 0.2rem;
       line-height: 1rem;
       font-size: 0.9rem;
     }
     .number {
       font-size: 1rem;
-      margin-right: 0.6rem;
+      margin-right: 1rem;
     }
   }
   @media (max-width: 768px) {
+    .number {
+      margin-right: 0.5rem;
+    }
   }
 `;
 
