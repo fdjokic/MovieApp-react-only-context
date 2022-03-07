@@ -6,7 +6,8 @@ import MovieSlider from "../MovieSlider";
 import { Link } from "react-router-dom";
 
 const SliderTopRated = () => {
-  const { topRated, carousel, next, prev } = useGlobalContext();
+  const { topRated, carousel, next, prev, setShowHamburger, closeSidebar } =
+    useGlobalContext();
 
   return (
     <Wrapper>
@@ -17,13 +18,14 @@ const SliderTopRated = () => {
           {topRated.map((movie) => {
             const { id } = movie;
             return (
-              <Link
-                to={`/movies/${id}`}
-                key={id}
+              <div
+                onClick={() => setShowHamburger(false)}
                 style={{ display: "inline-block" }}
               >
-                <MovieSlider movie={movie} key={id} />
-              </Link>
+                <Link to={`/movies/${id}`} key={id} onClick={closeSidebar}>
+                  <MovieSlider movie={movie} key={id} />
+                </Link>
+              </div>
             );
           })}
         </div>

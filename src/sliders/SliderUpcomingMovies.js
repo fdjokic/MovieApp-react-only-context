@@ -7,7 +7,14 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const SliderUpcoming = () => {
-  const { upcomingMovies, carousel, next, prev } = useGlobalContext();
+  const {
+    upcomingMovies,
+    carousel,
+    next,
+    prev,
+    setShowHamburger,
+    closeSidebar,
+  } = useGlobalContext();
 
   return (
     <Wrapper>
@@ -18,13 +25,14 @@ const SliderUpcoming = () => {
           {upcomingMovies.map((movie) => {
             const { id } = movie;
             return (
-              <Link
-                to={`/movies/${id}`}
-                key={id}
+              <div
+                onClick={() => setShowHamburger(false)}
                 style={{ display: "inline-block" }}
               >
-                <MovieSlider movie={movie} key={id} />
-              </Link>
+                <Link to={`/movies/${id}`} key={id} onClick={closeSidebar}>
+                  <MovieSlider movie={movie} key={id} />
+                </Link>
+              </div>
             );
           })}
         </div>

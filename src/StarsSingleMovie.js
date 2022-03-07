@@ -51,10 +51,24 @@ const Wrapper = styled.div`
   .number {
     font-size: 1.3rem;
     color: ${(props) => props.theme.fontColor};
-
+    text-align: center;
     border: 1px solid #ffb900;
-    padding: 0 0 0.3rem 0.3rem;
+    padding: 0 0 0.1rem 0.2rem;
     margin-right: 1rem;
+  }
+  @media (max-width: 1024px) {
+    span {
+      font-size: 0.8rem;
+    }
+    p {
+      line-height: 1rem;
+      font-size: 0.9rem;
+    }
+    .number {
+      font-size: 1rem;
+    }
+  }
+  @media (max-width: 768px) {
   }
 `;
 
