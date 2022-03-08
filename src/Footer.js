@@ -1,15 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+
+const footerVariants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      delay: 1,
+    },
+  },
+};
 
 const Footer = () => {
   return (
     <Wrapper>
-      <div>
+      <motion.div variants={footerVariants} animate="animate" initial="initial">
         <h6>
           &copy; {new Date().getFullYear()}
           <span>MovieTemple</span>All rights reserved
         </h6>
-      </div>
+      </motion.div>
     </Wrapper>
   );
 };
