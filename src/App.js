@@ -10,6 +10,7 @@ import { lightTheme, darkTheme } from "./themes";
 import { useGlobalContext } from "./context";
 import { ThemeProvider } from "styled-components";
 import SidebarCategories from "./SidebarCategories";
+import Footer from "./Footer.js";
 
 function App() {
   const location = useLocation();
@@ -26,12 +27,12 @@ function App() {
             <Route exact path="/">
               <Tree />
             </Route>
-
             <Route path="/movies/:id" children={<SingleMovie />} />
             <Route path="*">
               <Error />
             </Route>
           </Switch>
+          <Footer />
         </AnimatePresence>
       </ThemeProvider>
     </>
